@@ -1,0 +1,18 @@
+[
+  {
+    "id": "mercedes-amg-g63-model",
+    "name": "Mercedes-AMG G 63",
+    "model": "G-Wagon",
+    "exterior": "Obsidian black",
+    "modelReference": true,
+    "availabilityNote": "G-Wagon · Enquire for availability",
+    "enquiryLabel": "Enquire with SAM",
+    "showroom": {
+      "src": "/assets/road/cars/mercedes-amg-g63-model-1000.webp",
+      "small": "/assets/road/cars/mercedes-amg-g63-model-600.webp",
+      "order": 1,
+      "preview": "/assets/wheel/mercedes-amg-g63-model-1000.webp",
+      "previewSmall": "/assets/wheel/mercedes-amg-g63-model-640.webp"
+    }
+  }
+]

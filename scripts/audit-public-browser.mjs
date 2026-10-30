@@ -1,0 +1,98 @@
+import assert from 'node:assert/strict';
+import {inspectPhotoFrames,validatePhotoFrames,checkPhotoFrames} from './lib/release-photo-checks.mjs';
+import {mkdir,readFile,readdir,writeFile} from 'node:fs/promises';
+const {chromium,webkit}=await import(process.env.SAM_PLAYWRIGHT_MODULE||'playwright');
+const engineName=process.env.SAM_BROWSER||'chromium',origin=process.env.SAM_TEST_ORIGIN||'http://127.0.0.1:8780';
+const out=`qa/final-${process.env.SAM_AUDIT_TAG?process.env.SAM_AUDIT_TAG+'-':''}${engineName}`;await mkdir(out,{recursive:true});
+const cars=JSON.parse(await readFile('resources/inventory/cars.json','utf8')),site={...JSON.parse(await readFile('resources/inventory/site.json','utf8')),origin};
+async function files(dir){const all=[];for(const e of await readdir(dir,{withFileTypes:true})){const p=dir+'/'+e.name;all.push(...(e.isDirectory()?await files(p):[p]));}return all;}
+const routes=['/','/inventory/','/about/','/visit/','/sell/','/shortlist/','/compare/','/privacy/','/404.html','/offline.html','/wheel-preview/','/models/mercedes-amg-g63-model/',...cars.map(c=>'/cars/'+c.id+'/')].sort();
+const report={engine:engineName,origin,production:site.origin,method:'Phone and touch-tablet browser previews plus desktop, not physical-device tests. No customer enquiry is sent; share and WhatsApp destinations are captured inside the test browser.',pages:[],features:[],failures:[],links:[]};
+const browser=await {chromium,webkit}[engineName].launch({headless:true});
+const linkSet=new Set();
+const variants=[{name:'phone',width:390,height:844,touch:true},{name:'tablet',width:834,height:1112,touch:true},{name:'laptop',width:1440,height:1000,touch:false}];
+const ready=async page=>{await page.waitForSelector('[data-frontend]');await page.evaluate(()=>document.fonts.ready);if(await page.locator('[data-lead-fields]').count())await page.waitForFunction(()=>!document.querySelector('[data-lead-fields]').disabled);};
+const go=async(page,path)=>{const response=await page.goto(origin+path,{waitUntil:'load'});await ready(page);return response;};
+async function gesture(page,context,variant,selector,dx){
+ const element=page.locator(selector);await element.scrollIntoViewIfNeeded();const b=await element.boundingBox(),x=b.x+b.width*(dx<0?.72:.28),y=b.y+Math.min(b.height*.56,130);
+ if(engineName==='chromium'&&variant.touch){const cdp=await context.newCDPSession(page);await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x,y}]});for(let i=1;i<=12;i++){await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:x+dx*i/12,y}]});await page.waitForTimeout(12);}await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});await cdp.detach();}
+ else if(variant.touch&&selector.includes('catalogue'))await element.evaluate((v,dx)=>v.scrollBy({left:-dx,behavior:'smooth'}),dx);
+ else{await page.mouse.move(x,y);await page.mouse.down();await page.mouse.move(x+dx,y,{steps:18});await page.mouse.up();}
+ await page.waitForTimeout(700);
+}
+try{
+ for(const variant of variants){
+  const context=await browser.newContext({viewport:{width:variant.width,height:variant.height},isMobile:variant.touch,hasTouch:variant.touch,deviceScaleFactor:variant.touch?2:1,serviceWorkers:'block'});
+  await context.addInitScript(()=>{window.qaShares=[];window.qaPrints=0;window.print=()=>window.qaPrints++;Object.defineProperty(navigator,'share',{configurable:true,value:async data=>window.qaShares.push(data)});});
+  const page=await context.newPage();page.setDefaultTimeout(8000);let errors=[];page.on('pageerror',e=>errors.push(e.message));
+  const check=async(name,fn)=>{try{await fn();report.features.push({device:variant.name,name,status:'passed'});}catch(e){report.failures.push({device:variant.name,name,message:e.message});console.log('FAIL '+variant.name+' '+name+': '+e.message.slice(0,250));}};
+  for(const route of routes.filter(r=>!process.env.SAM_AUDIT_ROUTES||process.env.SAM_AUDIT_ROUTES.split(',').includes(r))){
+   errors=[];
+   try{
+    const response=await go(page,route);assert.equal(response.status(),200);
+    await page.evaluate(async()=>{for(const i of document.images)if(i.getAttribute('src'))i.loading='eager';await Promise.all([...document.images].filter(i=>i.getAttribute('src')).map(i=>i.decode().catch(()=>{})));});
+    const state=await page.evaluate(()=>{
+     const shown=e=>e.getClientRects().length&&getComputedStyle(e).visibility!=='hidden'&&!e.closest('[hidden],[inert]');
+     const rect=e=>{const r=e.getBoundingClientRect();return {left:r.left,right:r.right,top:r.top,bottom:r.bottom};};
+     const broken=[...document.images].filter(i=>i.getAttribute('src')&&(!i.complete||!i.naturalWidth)).map(i=>i.getAttribute('src'));
+     const glass=[...document.querySelectorAll('button,.button,.text-link:not(.source-link),.category-link,.nav-tools>a')].filter(shown).filter(e=>!e.matches('.wheel-card,.stage-select,.gallery-main-button,[data-photo-index],[data-lightbox-index],[data-open-photo]')).filter(e=>getComputedStyle(e).backgroundImage==='none').map(e=>e.textContent.trim().slice(0,40));
+     const smallInputs=[...document.querySelectorAll('input,textarea,select')].filter(shown).filter(e=>!['checkbox','radio','file'].includes(e.type)&&parseFloat(getComputedStyle(e).fontSize)<16).map(e=>e.name);
+     const header=[...document.querySelectorAll('.header-inner>.brand,.desktop-nav,.nav-tools>a,.menu-toggle')].filter(shown).map(e=>({name:e.getAttribute('aria-label')||e.textContent.trim(),...rect(e)}));
+     return {overflow:document.documentElement.scrollWidth-innerWidth,broken,glass,smallInputs,header,links:[...document.querySelectorAll('a[href]')].map(e=>e.getAttribute('href')),title:document.title};
+    });
+    assert.ok(state.overflow<=1,'Horizontal page overflow: '+state.overflow);assert.deepEqual(state.broken,[],'Broken images');assert.deepEqual(state.glass,[],'Missing button finish');if(variant.touch)assert.deepEqual(state.smallInputs,[],'Inputs below 16px cause phone zoom');
+    state.photoFrames=await page.evaluate(inspectPhotoFrames);validatePhotoFrames(state.photoFrames);
+    for(const href of state.links){const url=new URL(href,origin);if(url.origin===origin||url.origin===site.origin)linkSet.add(url.pathname+url.search);}
+    assert.deepEqual(errors,[],'Browser errors');
+    const name=route==='/'?'home':route.replaceAll('/','-').replace(/^-|-$/g,'');await page.screenshot({path:`${out}/${variant.name}-${name}.png`,fullPage:true,animations:'disabled'});
+    report.pages.push({device:variant.name,width:variant.width,route,status:'passed',httpStatus:response.status(),...state,links:undefined});
+   }catch(e){report.failures.push({device:variant.name,route,message:e.message});}
+  }
+  if(process.env.SAM_AUDIT_FEATURES==='0'){await context.close();continue;}
+  await check('Menu, navigation and Escape',async()=>{await go(page,'/');const toggle=page.locator('[data-menu-toggle]');if(await toggle.isVisible()){await toggle.click();await expectVisible(page.locator('#mobile-menu'));await page.keyboard.press('Escape');assert.ok(!await page.locator('#mobile-menu').isVisible());}assert.equal(await page.locator('header a[href="/sell/"]').count()>=1,true);});
+  await check('Hero: all six models, matching links, full control loop and swipe reversal',async()=>{
+   await go(page,'/');
+   const first=await page.locator('[data-wheel-link]').getAttribute('href'),visited=new Set();
+   const video=await page.locator('[data-showroom-motion]').count();
+   for(let i=0;i<6;i++){
+    const id=video?await page.locator('.showroom-hotspot:not([hidden])').getAttribute('data-wheel-id'):await page.locator('.orbit-wheel [aria-current=true]').getAttribute('data-wheel-id');
+    visited.add(id);assert.ok((await page.locator('[data-wheel-link]').getAttribute('href')).includes(id));
+    await page.locator('[data-wheel-next]').click();await page.waitForTimeout(300);
+   }
+   assert.equal(visited.size,6);assert.equal(await page.locator('[data-wheel-link]').getAttribute('href'),first);
+   const selector=video?'[data-road-stage]':'.orbit-wheel .wheel-stage';
+   await gesture(page,context,variant,selector,-Math.max(100,variant.width*.22));assert.notEqual(await page.locator('[data-wheel-link]').getAttribute('href'),first);
+   await gesture(page,context,variant,selector,Math.max(100,variant.width*.22));assert.equal(await page.locator('[data-wheel-link]').getAttribute('href'),first);
+  });
+  await check('Featured inventory: swipe directions, endpoints, controls and listing link',async()=>{
+   await go(page,'/');const root=page.locator('[data-catalogue-stage]'),viewport=page.locator('[data-catalogue-viewport]');const first=await root.getAttribute('data-active-car'),native=await root.getAttribute('data-scroll-engine')==='native';
+   await gesture(page,context,variant,'[data-catalogue-viewport]',-variant.width*.62);const advanced=await root.getAttribute('data-active-car');assert.notEqual(advanced,first,'Forward swipe advances');
+   const left=await viewport.evaluate(v=>v.scrollLeft);await gesture(page,context,variant,'[data-catalogue-viewport]',variant.width*.62);
+   if(native)assert.ok(await viewport.evaluate(v=>v.scrollLeft)<left,'Reverse swipe reduces native scroll position');else assert.equal(await root.getAttribute('data-active-car'),first);
+   await root.focus();await page.keyboard.press('Home');await page.waitForTimeout(1000);assert.equal(await root.getAttribute('data-active-car'),first);
+   await page.keyboard.press('End');await page.waitForTimeout(1000);assert.notEqual(await root.getAttribute('data-active-car'),first,'End selects the last car');
+   await page.locator('[data-stage-next]').click({force:true});await page.waitForTimeout(1100);assert.equal(await root.getAttribute('data-active-car'),first,'Next wraps from the final car');
+   const link=page.locator('.catalogue-slide.is-centre .stage-photo'),href=await link.getAttribute('href');await link.click();await page.waitForURL(origin+href);assert.equal(new URL(page.url()).pathname,href);
+  });
+  await check('Inventory search, filters, empty state, sorting and URL reload',async()=>{await go(page,'/inventory/');const toggle=page.locator('[data-filter-toggle]');if(await toggle.isVisible())await toggle.click();const search=page.locator('[data-search]');await search.fill('Porsche');await page.waitForFunction(()=>document.querySelector('[data-result-count]').textContent.startsWith('1 '));assert.equal(await page.locator('[data-catalogue] [data-car-id]:visible').count(),1);await search.fill('no-such-car-qa');await expectVisible(page.locator('[data-catalogue-empty]'));await search.fill('');await page.waitForFunction(()=>document.querySelector('[data-result-count]').textContent.startsWith('9 '));await page.locator('[data-sort]').selectOption('mileage');await page.waitForFunction(()=>document.querySelector('[data-catalogue] [data-car-id]:not([hidden])')?.dataset.carId==='lexus-lx570-2020');const first=await page.locator('[data-catalogue] [data-car-id]:visible').first().getAttribute('data-car-id');assert.equal(first,'lexus-lx570-2020');await page.waitForURL(u=>u.pathname==='/inventory/'&&u.searchParams.get('sort')==='mileage'&&!u.searchParams.get('q'));await page.reload();await ready(page);assert.equal(await page.locator('[data-catalogue] [data-car-id]:visible').first().getAttribute('data-car-id'),first);});
+  await check('Saved cars: add, reload, share, remove and empty state',async()=>{await go(page,'/inventory/');await page.evaluate(()=>localStorage.clear());await page.reload();await ready(page);for(const c of cars.slice(0,2))await page.locator(`[data-save="${c.id}"]`).click();await go(page,'/shortlist/');assert.equal(await page.locator('[data-shortlist-grid] [data-car-id]:visible').count(),2);await checkPhotoFrames(page);await page.locator('[data-share-shortlist]').click();const shared=await page.evaluate(()=>window.qaShares.at(-1));assert.ok(shared.url.startsWith(site.origin+'/shortlist/?cars='));for(const c of cars.slice(0,2))await page.locator(`[data-save="${c.id}"]`).click();await expectVisible(page.locator('[data-shortlist-empty]'));});
+  await check('Comparison: three-car limit, named table, differences, sharing and empty state',async()=>{await go(page,'/inventory/');for(const c of cars.slice(0,4))await page.locator(`[data-compare="${c.id}"]`).click();assert.equal(await page.evaluate(()=>JSON.parse(localStorage.getItem('sam:compare')).length),3);await go(page,'/compare/');assert.equal(await page.locator('.comparison-vehicle').count(),3);await checkPhotoFrames(page);await page.locator('[data-comparison-differences]').check();assert.equal(await page.locator('.comparison-row-same').count(),0);await page.locator('[data-share-compare]').click();assert.ok((await page.evaluate(()=>window.qaShares.at(-1))).url.startsWith(site.origin+'/compare/?cars='));for(let i=0;i<3;i++)await page.locator('[data-remove-compare]').first().click();await expectVisible(page.locator('[data-comparison-empty]'));await page.locator('[data-comparison-add]').selectOption(cars[0].id);await page.locator('[data-comparison-add-form] button').click();assert.equal(await page.locator('.comparison-vehicle').count(),1);});
+  await check('Every main gallery and lightbox: all 39 displayed photos, arrows and keyboard wrap',async()=>{let viewed=0;for(const car of cars){await go(page,'/cars/'+car.id+'/');
+   const assertMain=async i=>{const photo=car.photos[i];const shown=await page.locator('.gallery-main img').evaluate(async img=>{await img.decode();return {path:new URL(img.currentSrc).pathname,alt:img.alt};});assert.ok([photo.src,photo.medium,photo.small].includes(shown.path),'Displayed main photo must match chosen thumbnail: '+car.id+' '+i+' '+shown.path);assert.equal(shown.alt,photo.alt);};
+   for(let i=0;i<car.photos.length;i++){await page.locator(`[data-photo-index="${i}"]`).click();await assertMain(i);}
+   await page.locator('[data-photo-index="0"]').click();await assertMain(0);
+   await page.locator('[data-gallery-next]').click();await assertMain(1);
+   await page.locator('[data-gallery-prev]').click();await assertMain(0);
+   await page.locator('[data-gallery-prev]').click();await assertMain(car.photos.length-1);
+   await page.locator('[data-gallery-next]').click();await assertMain(0);
+   await page.locator('[data-open-photo="0"]').first().click();await expectVisible(page.locator('#photo-dialog'));for(let i=0;i<car.photos.length;i++){const thumb=page.locator(`[data-lightbox-index="${i}"]`);assert.equal(await thumb.getAttribute('aria-selected'),'true');await page.locator('[data-lightbox-image]').evaluate(i=>i.decode());await checkPhotoFrames(page);viewed++;await page.keyboard.press('ArrowRight');}assert.equal(await page.locator('[data-lightbox-index="0"]').getAttribute('aria-selected'),'true');await page.keyboard.press('Escape');assert.ok(!await page.locator('#photo-dialog').isVisible());await page.locator('[data-enquire]').first().click();await expectVisible(page.locator('#enquiry-dialog'));assert.equal(await page.locator('#enquiry-dialog select[name=vehicle]').inputValue(),car.id);await page.keyboard.press('Escape');}assert.equal(viewed,39);});
+  await check('Viewing form: validation and prepared WhatsApp destination',async()=>{await go(page,'/visit/');const form=page.locator('main form[data-lead-form="viewing"]');await form.locator('button[type=submit]').click();await expectVisible(form.locator('[data-form-errors]'));await form.locator('[name=name]').fill('QA Preview');await form.locator('[name=phone]').fill('03001234567');const d=new Date(Date.now()+8*864e5);if(d.getUTCDay()===0)d.setUTCDate(d.getUTCDate()+1);await form.locator('[name=day]').fill(d.toISOString().slice(0,10));await form.locator('[name=time]').fill('15:00');await page.route('https://wa.me/**',r=>r.fulfill({contentType:'text/html',body:'QA captured the prepared WhatsApp URL; no message was sent.'}));await form.locator('button[type=submit]').click();await page.waitForURL('https://wa.me/**');const url=new URL(page.url());assert.equal(url.pathname,'/923242607773');assert.ok(url.searchParams.get('text').includes('QA Preview'));});
+  await check('Sell/trade form: validation, photo selection and enquiry preparation',async()=>{await go(page,'/sell/?intent=trade');assert.equal(await page.locator('main [name=intent]').inputValue(),'trade');const form=page.locator('main form[data-lead-form="trade"]');await form.locator('button[type=submit]').click();await expectVisible(form.locator('[data-form-errors]'));for(const [name,value]of Object.entries({name:'QA Preview',phone:'03001234567',car:'Test vehicle',year:'2022',mileage:'24000'}))await form.locator(`[name=${name}]`).fill(value);await form.locator('[name=intent]').selectOption('trade');await form.locator('[name=photos]').setInputFiles({name:'QA-preview.png',mimeType:'image/png',buffer:Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAusB9Y9Z4YkAAAAASUVORK5CYII=','base64')});await form.locator('button[type=submit]').click();await expectVisible(form.locator('[data-form-success]'));const url=new URL(await form.locator('[data-form-whatsapp]').getAttribute('href'));assert.equal(url.hostname,'wa.me');assert.ok(url.searchParams.get('text').includes('Test vehicle'));assert.ok((await form.locator('[data-selected-files]').textContent()).includes('QA-preview.png'));});
+  await check('Review portraits, one Visit map, social logos, contact numbers and hours',async()=>{await go(page,'/');assert.equal(await page.locator('.review-avatar img').count(),3);assert.equal((await page.locator('.trust-stats dd').allTextContents()).join('|'),'2014|789');await go(page,'/visit/');assert.equal(await page.locator('img[src="/assets/showroom-map.svg"]').count(),1);assert.ok((await page.locator('footer').textContent()).includes('11 am–7 pm'));assert.equal(await page.locator('.footer-nav .social-icon').count(),2);for(const phone of [site.phone,site.phoneAlternative])assert.ok(await page.locator(`a[href="tel:${phone}"]`).count());});
+  await check('Showroom film: native playback, muted audio and offscreen pause',async()=>{await go(page,'/');const video=page.locator('video[data-showroom-film]');if(!await video.count())throw new Error('Showroom film missing');await video.scrollIntoViewIfNeeded();assert.equal(await video.evaluate(v=>v.paused),true);await video.evaluate(v=>Promise.race([v.play(),new Promise((_,reject)=>setTimeout(()=>reject(new Error('Playback did not start within 8 seconds')),8000))]));await page.waitForFunction(()=>document.querySelector('video[data-showroom-film]').currentTime>0);assert.equal(await video.evaluate(v=>v.muted),true);await page.evaluate(()=>scrollTo({top:0,behavior:'instant'}));await page.waitForFunction(()=>document.querySelector('video[data-showroom-film]').paused);});
+  await context.close();console.log(`${engineName} ${variant.name}: ${report.pages.filter(p=>p.device===variant.name).length} pages, ${report.features.filter(p=>p.device===variant.name).length} feature checks, ${report.failures.filter(p=>p.device===variant.name).length} failures.`);
+ }
+ const api=await browser.newContext();const p=await api.newPage();for(const link of linkSet){const r=await p.request.get(origin+link);report.links.push({path:link,status:r.status()});if(r.status()>=400&&link!=='/404.html')report.failures.push({name:'Internal link',route:link,message:'HTTP '+r.status()});}await api.close();
+}finally{await writeFile(out+'/report.json',JSON.stringify(report,null,2)+'\n');await browser.close();}
+if(report.failures.length){console.log(JSON.stringify(report.failures));process.exitCode=1;}
+async function expectVisible(locator){await locator.waitFor({state:'visible'});assert.ok(await locator.isVisible());}

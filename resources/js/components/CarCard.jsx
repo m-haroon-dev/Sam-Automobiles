@@ -1,0 +1,10 @@
+import {SiteLink} from './SiteLink';
+import React from 'react';
+import {Icon} from './Icon';
+import {PhotoFrame} from './PhotoFrame';
+import {useShowroom} from '../state/ShowroomContext';
+import {mileage,formatPrice,askPriceURL} from '../lib/data';
+export function CarCard({car:c,heading:Heading='h3',hidden=false}){
+ const {site,saved,compare,toggleSaved,toggleCompare}=useShowroom(),href='/cars/'+c.id+'/';
+ return <article className="car-card" data-car-id={c.id} data-status={c.status} data-reveal="" hidden={hidden}><SiteLink className="car-photo" href={href} aria-label={'View '+c.name+' '+(c.year||'')}><PhotoFrame photo={c.photos[0]} sold={c.status==='sold'}/></SiteLink><div className="car-heading"><div><Heading><SiteLink href={href}>{c.name}</SiteLink></Heading><p className="car-meta">{[c.year,mileage(c)].filter(Boolean).join(' · ')}</p><p className="car-extra">{c.trim||'Trim on request'}</p></div><button className="save-button" data-save={c.id} aria-label={(saved.includes(c.id)?'Remove saved ':'Save ')+c.name} aria-pressed={saved.includes(c.id)} onClick={()=>toggleSaved(c.id)}><Icon name="heart"/></button></div>{c.status==='sold'&&<p className="stock-status">Sold</p>}<p className="car-fit">{c.bestFor}</p><div className="car-standout"><p><strong>Standout feature</strong></p><p>{c.usp}</p></div><div className="car-card-footer"><div className="car-price"><p>{formatPrice(c.price)}</p></div><div className="card-actions" role="group" aria-label={c.name+' '+(c.year||'')+' actions'}><SiteLink className="button ink car-view" href={href}>View car <Icon/></SiteLink>{c.price==null&&c.status!=='sold'&&<SiteLink className="text-link" data-ask-price={c.id} href={askPriceURL(site,c)} target="_blank" rel="noopener">Ask for price <Icon/></SiteLink>}{c.status==='available'&&<button className="compare-toggle" data-compare={c.id} aria-label={'Compare '+c.name} aria-pressed={compare.includes(c.id)} onClick={()=>toggleCompare(c.id)}><Icon name="compare"/><span>{compare.includes(c.id)?'Added':'Compare'}</span></button>}</div></div></article>;
+}

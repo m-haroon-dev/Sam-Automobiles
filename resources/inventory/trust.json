@@ -1,0 +1,82 @@
+{
+  "testimonials": [
+    {
+      "placeholder": false,
+      "source": "google",
+      "sourceVerified": true,
+      "publicationApproved": true,
+      "name": "Waqar Haider",
+      "text": "Heaven of Luxury cars. Excellent salesperson.",
+      "rating": 5,
+      "date": "2025-11-07",
+      "sourceUrl": "https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sCi9DQUlRQUNvZENodHljRjlvT21aTldUazJiRzg0VFd4NGMwRXpaRmhVV2xONk5tYxAB!2m1!1s0x0:0xf3709c132cd864ff!3m1!1s2@1:CAIQACodChtycF9oOmZNWTk2bG84TWx4c0EzZFhUWlN6Nmc%7C%7C?hl=en",
+      "authorUrl": "https://www.google.com/maps/contrib/101941190745682980813/reviews?hl=en",
+      "verifiedAt": "2026-10-19",
+      "profileImage": {
+        "src": "/assets/reviews/waqar-haider.webp",
+        "width": 120,
+        "height": 120,
+        "sourceUrl": "https://lh3.googleusercontent.com/a/ACg8ocKCzKJI-nfxjs-5NvQ7MQyYZuJcWUPjVszdLrmRY8I-gLp60Q=s120-c-rp-mo-ba12-br100",
+        "verifiedAt": "2026-10-19"
+      }
+    },
+    {
+      "placeholder": false,
+      "source": "google",
+      "sourceVerified": true,
+      "publicationApproved": true,
+      "name": "Salman Alvi",
+      "text": "Very nice and honest dealings",
+      "rating": 5,
+      "date": "2023-01-05",
+      "sourceUrl": "https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sChZDSUhNMG9nS0VJQ0FnSUNCMjdlSUZ3EAE!2m1!1s0x0:0xf3709c132cd864ff!3m1!1s2@1:CIHM0ogKEICAgICB27eIFw%7C%7C?hl=en",
+      "authorUrl": "https://www.google.com/maps/contrib/106593116515591899259/reviews?hl=en",
+      "verifiedAt": "2026-10-19",
+      "profileImage": {
+        "src": "/assets/reviews/salman-alvi.webp",
+        "width": 120,
+        "height": 120,
+        "sourceUrl": "https://lh3.googleusercontent.com/a-/ALV-UjXPmpobcrSKBeSRPS7nPTmaqKTt4qi_kPNBJUp20kDx_Eq0hXY=s120-c-rp-mo-ba12-br100",
+        "verifiedAt": "2026-10-19"
+      }
+    },
+    {
+      "placeholder": false,
+      "source": "google",
+      "sourceVerified": true,
+      "publicationApproved": true,
+      "name": "Muhammad Aamir",
+      "text": "Excellent place for luxury cars sales, purchase and maintenance.",
+      "rating": 5,
+      "date": "2020-03-14",
+      "sourceUrl": "https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sChZDSUhNMG9nS0VJQ0FnSUNjaWV5OEZ3EAE!2m1!1s0x0:0xf3709c132cd864ff!3m1!1s2@1:CIHM0ogKEICAgICciey8Fw%7C%7C?hl=en",
+      "authorUrl": "https://www.google.com/maps/contrib/113493068257332905666/reviews?hl=en",
+      "verifiedAt": "2026-10-19",
+      "profileImage": {
+        "src": "/assets/reviews/muhammad-aamir.webp",
+        "width": 120,
+        "height": 120,
+        "sourceUrl": "https://lh3.googleusercontent.com/a-/ALV-UjUcf_9vrRZ-QCiUNmHdxTmVM9pGJTJyBj9LKXiBTgbEGG2uHK9IYg=s120-c-rp-mo-ba12-br100",
+        "verifiedAt": "2026-10-19"
+      }
+    }
+  ],
+  "stats": [
+    {
+      "label": "Established",
+      "value": "2014",
+      "confirmed": true,
+      "confirmedAt": "2026-10-19",
+      "source": "Confirmed directly by the client"
+    },
+    {
+      "label": "Cars delivered",
+      "value": 789,
+      "confirmed": true,
+      "confirmedAt": "2026-10-19",
+      "source": "Confirmed directly by the client"
+    }
+  ],
+  "teamPhoto": null,
+  "googleReviewsUrl": "https://www.google.com/maps?cid=17541692154778772735&hl=en"
+}

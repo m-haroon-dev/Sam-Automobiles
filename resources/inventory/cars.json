@@ -1,0 +1,1085 @@
+[
+  {
+    "id": "isuzu-dmax-2021",
+    "name": "Isuzu D-Max V-Cross",
+    "year": 2021,
+    "mileage": 96000,
+    "trim": "V-Cross Automatic 3.0",
+    "colour": "Grey",
+    "importYear": null,
+    "price": null,
+    "status": "available",
+    "photos": [
+      {
+        "src": "/assets/cars/isuzu-dmax-2021-1-1280.webp",
+        "medium": "/assets/cars/isuzu-dmax-2021-1-800.webp",
+        "small": "/assets/cars/isuzu-dmax-2021-1-400.webp",
+        "width": 2471,
+        "height": 2471,
+        "alt": "Isuzu D-Max V-Cross — Front three-quarter exterior in SAM showroom",
+        "description": "Front three-quarter exterior in SAM showroom",
+        "objectPosition": "50% 65%",
+        "srcWidth": 1280,
+        "mediumWidth": 800,
+        "smallWidth": 400
+      },
+      {
+        "src": "/assets/cars/isuzu-dmax-2021-2-1280.webp",
+        "medium": "/assets/cars/isuzu-dmax-2021-2-800.webp",
+        "small": "/assets/cars/isuzu-dmax-2021-2-400.webp",
+        "width": 3120,
+        "height": 3120,
+        "alt": "Isuzu D-Max V-Cross — Dashboard and front cabin",
+        "description": "Dashboard and front cabin",
+        "objectPosition": "50% 55%",
+        "srcWidth": 1280,
+        "mediumWidth": 800,
+        "smallWidth": 400
+      },
+      {
+        "src": "/assets/cars/isuzu-dmax-2021-3-1280.webp",
+        "medium": "/assets/cars/isuzu-dmax-2021-3-800.webp",
+        "small": "/assets/cars/isuzu-dmax-2021-3-400.webp",
+        "width": 1321,
+        "height": 1321,
+        "alt": "Isuzu D-Max V-Cross — Instrument cluster and odometer",
+        "description": "Instrument cluster and odometer",
+        "objectPosition": "50% 75%",
+        "srcWidth": 1280,
+        "mediumWidth": 800,
+        "smallWidth": 400
+      }
+    ],
+    "videoUrl": null,
+    "inspectionUrl": null,
+    "notes": [],
+    "instagramPermalink": "https://www.instagram.com/sam.automobiles/p/DeguejpjkGM/",
+    "make": "Isuzu",
+    "model": "D-Max",
+    "registration": "Sindh",
+    "interior": null,
+    "auctionGrade": null,
+    "advertisedDate": "2026-10-15",
+    "body": "Pickup",
+    "fuel": null,
+    "origin": null,
+    "importMileageKm": null,
+    "features": [],
+    "bestFor": "For drivers who want a practical pickup for workdays and weekend plans.",
+    "usp": "A 3.0-litre V-Cross pickup with an automatic transmission.",
+    "attractions": [
+      {
+        "label": "Engine",
+        "value": "3.0 litres"
+      },
+      {
+        "label": "Transmission",
+        "value": "Automatic"
+      },
+      {
+        "label": "Character",
+        "value": "V-Cross pickup"
+      }
+    ],
+    "showroom": null
+  },
+  {
+    "id": "mercedes-e200-2023",
+    "name": "Mercedes-Benz E200",
+    "year": 2023,
+    "mileage": 14000,
+    "trim": "2.0 litre AMG Line",
+    "colour": "White metallic",
+    "importYear": 2026,
+    "price": null,
+    "status": "available",
+    "photos": [
+      {
+        "src": "/assets/cars/mercedes-e200-2023-1-1280.webp",
+        "medium": "/assets/cars/mercedes-e200-2023-1-800.webp",
+        "small": "/assets/cars/mercedes-e200-2023-1-400.webp",
+        "width": 2495,
+        "height": 2542,
+        "alt": "Mercedes-Benz E200 — Front exterior in SAM showroom",
+        "description": "Front exterior in SAM showroom",
+        "objectPosition": "50% 90%",
+        "srcWidth": 1256,
+        "mediumWidth": 785,
+        "smallWidth": 393
+      },
+      {
+        "src": "/assets/cars/mercedes-e200-2023-2-1280.webp",
+        "medium": "/assets/cars/mercedes-e200-2023-2-800.webp",
+        "small": "/assets/cars/mercedes-e200-2023-2-400.webp",
+        "width": 1163,
+        "height": 1185,
+        "alt": "Mercedes-Benz E200 — Front three-quarter exterior in SAM showroom",
+        "description": "Front three-quarter exterior in SAM showroom",
+        "objectPosition": "50% 85%",
+        "srcWidth": 1163,
+        "mediumWidth": 785,
+        "smallWidth": 393
+      },
+      {
+        "src": "/assets/cars/mercedes-e200-2023-3-1280.webp",
+        "medium": "/assets/cars/mercedes-e200-2023-3-800.webp",
+        "small": "/assets/cars/mercedes-e200-2023-3-400.webp",
+        "width": 3490,
+        "height": 3554,
+        "alt": "Mercedes-Benz E200 — Front seats and cabin",
+        "description": "Front seats and cabin",
+        "objectPosition": "50% 55%",
+        "srcWidth": 1257,
+        "mediumWidth": 786,
+        "smallWidth": 393
+      },
+      {
+        "src": "/assets/cars/mercedes-e200-2023-4-1280.webp",
+        "medium": "/assets/cars/mercedes-e200-2023-4-800.webp",
+        "small": "/assets/cars/mercedes-e200-2023-4-400.webp",
+        "width": 3024,
+        "height": 3079,
+        "alt": "Mercedes-Benz E200 — Rear seats and cabin",
+        "description": "Rear seats and cabin",
+        "objectPosition": "50% 55%",
+        "srcWidth": 1257,
+        "mediumWidth": 786,
+        "smallWidth": 393
+      }
+    ],
+    "videoUrl": null,
+    "inspectionUrl": null,
+    "notes": [
+      "Fresh import"
+    ],
+    "instagramPermalink": "https://www.instagram.com/sam.automobiles/p/Degt-SIjkGW/",
+    "make": "Mercedes-Benz",
+    "model": "E200",
+    "registration": null,
+    "interior": "Brown Nappa leather",
+    "auctionGrade": "4.5",
+    "advertisedDate": "2026-10-15",
+    "body": "Saloon",
+    "fuel": null,
+    "origin": null,
+    "importMileageKm": null,
+    "features": [
+      "Hyper screen",
+      "AMG line exterior",
+      "AMG line interior",
+      "Apple carplay",
+      "Android auto",
+      "Active park assist",
+      "Panoramic glass sunroof",
+      "Burmester 3D surround system",
+      "Active lane keeping assist",
+      "Memory package",
+      "Heated/Ventilated seats",
+      "Front seats with massage option",
+      "Comfort headrest",
+      "3D instrument cluster display",
+      "360 degree camera",
+      "Privacy glass",
+      "Auto trunk",
+      "Keyless go",
+      "Wireless charger",
+      "Air quality package",
+      "19'' AMG wheels"
+    ],
+    "bestFor": "For an executive daily drive with a richly equipped, comfortable cabin.",
+    "usp": "Heated, ventilated front seats with a massage function.",
+    "attractions": [
+      {
+        "label": "Cabin sound",
+        "value": "Burmester 3D"
+      },
+      {
+        "label": "Parking view",
+        "value": "360° camera"
+      },
+      {
+        "label": "Open-air feel",
+        "value": "Panoramic glass roof"
+      }
+    ],
+    "showroom": null
+  },
+  {
+    "id": "porsche-taycan-2022",
+    "name": "Porsche Taycan",
+    "year": 2022,
+    "mileage": 14000,
+    "trim": "RWD",
+    "colour": "White",
+    "importYear": null,
+    "price": null,
+    "status": "available",
+    "photos": [
+      {
+        "src": "/assets/cars/porsche-taycan-2022-1-1280.webp",
+        "medium": "/assets/cars/porsche-taycan-2022-1-800.webp",
+        "small": "/assets/cars/porsche-taycan-2022-1-400.webp",
+        "width": 1600,
+        "height": 1388,
+        "alt": "Porsche Taycan — Front exterior in SAM showroom",
+        "description": "Front exterior in SAM showroom",
+        "objectPosition": "50% 85%",
+        "srcWidth": 1280,
+        "mediumWidth": 800,
+        "smallWidth": 400
+      },
+      {
+        "src": "/assets/cars/porsche-taycan-2022-2-1280.webp",
+        "medium": "/assets/cars/porsche-taycan-2022-2-800.webp",
+        "small": "/assets/cars/porsche-taycan-2022-2-400.webp",
+        "width": 1502,
+        "height": 1303,
+        "alt": "Porsche Taycan — Front three-quarter exterior in SAM showroom",
+        "description": "Front three-quarter exterior in SAM showroom",
+        "objectPosition": "50% 85%",
+        "srcWidth": 1280,
+        "mediumWidth": 800,
+        "smallWidth": 400
+      }
+    ],
+    "videoUrl": null,
+    "inspectionUrl": null,
+    "notes": [
+      "Fresh Import"
+    ],
+    "instagramPermalink": "https://www.instagram.com/sam.automobiles/p/DeZzqvUjj1N/",
+    "make": "Porsche",
+    "model": "Taycan",
+    "registration": null,
+    "interior": "Beige leather",
+    "auctionGrade": "4.5",
+    "advertisedDate": "2026-10-12",
+    "body": "Saloon",
+    "fuel": "Electric",
+    "origin": null,
+    "importMileageKm": null,
+    "features": [
+      "Heated front seats",
+      "Welcome lights",
+      "Ambient lights",
+      "Privacy glass",
+      "Auto dimming mirrors",
+      "Apple carplay",
+      "8 way power seats",
+      "Keyless entry+go",
+      "Insulating glass in windscreen",
+      "Door handels in vehicle color",
+      "Tire pressure monitor",
+      "LED headlights",
+      "E-sound",
+      "Navigation module for porsche communication management (PCM)",
+      "Black tire valve",
+      "Anti theft protection",
+      "Driving modes",
+      "Rear ac vents"
+    ],
+    "bestFor": "For drivers who want electric everyday travel with a sports-saloon feel.",
+    "usp": "Rear-wheel-drive Porsche character, powered entirely by electricity.",
+    "attractions": [
+      {
+        "label": "0–100 km/h",
+        "value": "5.4 seconds",
+        "manufacturer": true
+      },
+      {
+        "label": "Top speed",
+        "value": "230 km/h",
+        "manufacturer": true
+      },
+      {
+        "label": "Sound character",
+        "value": "Porsche E-Sound"
+      }
+    ],
+    "performanceSource": {
+      "title": "Porsche: Taycan RWD model figures",
+      "url": "https://newsroom.porsche.com/pdf/00b7b9a3-d9cf-4099-b961-9a42514d040b?print="
+    },
+    "performanceNote": "Manufacturer figures for the first-generation Taycan RWD, with Launch Control, apply to both battery configurations. These are model reference figures, not a test of this car.",
+    "showroom": {
+      "src": "/assets/road/cars/porsche-taycan-2022-1000.webp",
+      "small": "/assets/road/cars/porsche-taycan-2022-600.webp",
+      "order": 2,
+      "preview": "/assets/wheel/porsche-taycan-2022-1000.webp",
+      "previewSmall": "/assets/wheel/porsche-taycan-2022-640.webp"
+    }
+  },
+  {
+    "id": "lexus-lx570-2020",
+    "name": "Lexus LX570",
+    "year": 2020,
+    "mileage": 1600,
+    "trim": null,
+    "colour": "Pearl white",
+    "importYear": 2025,
+    "price": null,
+    "status": "available",
+    "photos": [
+      {
+        "src": "/assets/cars/lexus-lx570-2020-1-1280.webp",
+        "medium": "/assets/cars/lexus-lx570-2020-1-800.webp",
+        "small": "/assets/cars/lexus-lx570-2020-1-400.webp",
+        "width": 2657,
+        "height": 2596,
+        "alt": "Lexus LX570 — Front exterior in SAM showroom",
+        "description": "Front exterior in SAM showroom",
+        "objectPosition": "50% 90%",
+        "srcWidth": 1280,
+        "mediumWidth": 800,
+        "smallWidth": 400
+      },
+      {
+        "src": "/assets/cars/lexus-lx570-2020-2-1280.webp",
+        "medium": "/assets/cars/lexus-lx570-2020-2-800.webp",
+        "small": "/assets/cars/lexus-lx570-2020-2-400.webp",
+        "width": 2436,
+        "height": 2381,
+        "alt": "Lexus LX570 — Front three-quarter exterior in SAM showroom",
+        "description": "Front three-quarter exterior in SAM showroom",
+        "objectPosition": "50% 90%",
+        "srcWidth": 1280,
+        "mediumWidth": 800,
+        "smallWidth": 400
+      },
+      {
+        "src": "/assets/cars/lexus-lx570-2020-3-1280.webp",
+        "medium": "/assets/cars/lexus-lx570-2020-3-800.webp",
+        "small": "/assets/cars/lexus-lx570-2020-3-400.webp",
+        "width": 1549,
+        "height": 1513,
+        "alt": "Lexus LX570 — Instrument cluster and odometer",
+        "description": "Instrument cluster and odometer",
+        "objectPosition": "50% 75%",
+        "srcWidth": 1280,
+        "mediumWidth": 800,
+        "smallWidth": 400
+      },
+      {
+        "src": "/assets/cars/lexus-lx570-2020-4-1280.webp",
+        "medium": "/assets/cars/lexus-lx570-2020-4-800.webp",
+        "small": "/assets/cars/lexus-lx570-2020-4-400.webp",
+        "width": 3024,
+        "height": 2955,
+        "alt": "Lexus LX570 — Rear cabin",
+        "description": "Rear cabin",
+        "objectPosition": "50% 55%",
+        "srcWidth": 1280,
+        "mediumWidth": 800,
+        "smallWidth": 400
+      }
+    ],
+    "videoUrl": null,
+    "inspectionUrl": null,
+    "notes": [
+      "Old Policy Unit Transferable",
+      "Import mileage 700 kms"
+    ],
+    "instagramPermalink": "https://www.instagram.com/sam.automobiles/p/DeZv2_0jrXr/",
+    "make": "Lexus",
+    "model": "LX570",
+    "registration": "Unregistered",
+    "interior": "Beige leather",
+    "auctionGrade": "5A",
+    "advertisedDate": "2026-10-12",
+    "body": "SUV",
+    "fuel": null,
+    "origin": null,
+    "importMileageKm": 700,
+    "features": [
+      "Sunroof",
+      "Mark Levinson sound system",
+      "Cool box",
+      "Privacy glass",
+      "Rear entertainment",
+      "Auto trunk",
+      "Heads-up display",
+      "Body kit",
+      "Rear Blinds"
+    ],
+    "bestFor": "For families who want luxury-SUV comfort for city days and longer journeys.",
+    "usp": "Rear entertainment paired with a Mark Levinson sound system.",
+    "attractions": [
+      {
+        "label": "Cabin sound",
+        "value": "Mark Levinson"
+      },
+      {
+        "label": "Rear cabin",
+        "value": "Entertainment screens"
+      },
+      {
+        "label": "Driver display",
+        "value": "Head-up display"
+      }
+    ],
+    "showroom": {
+      "src": "/assets/road/cars/lexus-lx570-2020-1000.webp",
+      "small": "/assets/road/cars/lexus-lx570-2020-600.webp",
+      "order": 4,
+      "preview": "/assets/wheel/lexus-lx570-2020-1000.webp",
+      "previewSmall": "/assets/wheel/lexus-lx570-2020-640.webp"
+    }
+  },
+  {
+    "id": "mercedes-s580e-l-2022",
+    "name": "Mercedes-Benz S580e L",
+    "year": 2022,
+    "mileage": null,
+    "trim": "AMG Line Premium Plus Executive",
+    "colour": "Diamond white metallic",
+    "importYear": 2025,
+    "price": null,
+    "status": "available",
+    "photos": [
+      {
+        "src": "/assets/cars/mercedes-s580e-l-2022-1-1280.webp",
+        "medium": "/assets/cars/mercedes-s580e-l-2022-1-800.webp",
+        "small": "/assets/cars/mercedes-s580e-l-2022-1-400.webp",
+        "width": 1550,
+        "height": 1599,
+        "alt": "Mercedes-Benz S580e L — Front exterior in SAM showroom",
+        "description": "Front exterior in SAM showroom",
+        "objectPosition": "50% 88%",
+        "srcWidth": 1241,
+        "mediumWidth": 775,
+        "smallWidth": 388
+      },
+      {
+        "src": "/assets/cars/mercedes-s580e-l-2022-2-1280.webp",
+        "medium": "/assets/cars/mercedes-s580e-l-2022-2-800.webp",
+        "small": "/assets/cars/mercedes-s580e-l-2022-2-400.webp",
+        "width": 1471,
+        "height": 1512,
+        "alt": "Mercedes-Benz S580e L — Front three-quarter exterior in SAM showroom",
+        "description": "Front three-quarter exterior in SAM showroom",
+        "objectPosition": "50% 88%",
+        "srcWidth": 1245,
+        "mediumWidth": 778,
+        "smallWidth": 389
+      },
+      {
+        "src": "/assets/cars/mercedes-s580e-l-2022-3-1280.webp",
+        "medium": "/assets/cars/mercedes-s580e-l-2022-3-800.webp",
+        "small": "/assets/cars/mercedes-s580e-l-2022-3-400.webp",
+        "width": 1167,
+        "height": 1199,
+        "alt": "Mercedes-Benz S580e L — Dashboard and driver area",
+        "description": "Dashboard and driver area",
+        "objectPosition": "50% 55%",
+        "srcWidth": 1167,
+        "mediumWidth": 779,
+        "smallWidth": 389
+      },
+      {
+        "src": "/assets/cars/mercedes-s580e-l-2022-4-1280.webp",
+        "medium": "/assets/cars/mercedes-s580e-l-2022-4-800.webp",
+        "small": "/assets/cars/mercedes-s580e-l-2022-4-400.webp",
+        "width": 1200,
+        "height": 1238,
+        "alt": "Mercedes-Benz S580e L — Executive rear cabin",
+        "description": "Executive rear cabin",
+        "objectPosition": "50% 55%",
+        "srcWidth": 1200,
+        "mediumWidth": 775,
+        "smallWidth": 388
+      },
+      {
+        "src": "/assets/cars/mercedes-s580e-l-2022-5-1280.webp",
+        "medium": "/assets/cars/mercedes-s580e-l-2022-5-800.webp",
+        "small": "/assets/cars/mercedes-s580e-l-2022-5-400.webp",
+        "width": 1200,
+        "height": 1238,
+        "alt": "Mercedes-Benz S580e L — Front seats and cabin",
+        "description": "Front seats and cabin",
+        "objectPosition": "50% 55%",
+        "srcWidth": 1200,
+        "mediumWidth": 775,
+        "smallWidth": 388
+      }
+    ],
+    "videoUrl": null,
+    "inspectionUrl": null,
+    "notes": [
+      "Fresh import"
+    ],
+    "instagramPermalink": "https://www.instagram.com/sam.automobiles/p/DeZvfcpjuKN/",
+    "make": "Mercedes-Benz",
+    "model": "S580e L",
+    "registration": null,
+    "interior": "Black Nappa leather",
+    "auctionGrade": null,
+    "advertisedDate": "2026-10-12",
+    "body": "Saloon",
+    "fuel": "Plug-in hybrid",
+    "origin": "UK",
+    "importMileageKm": null,
+    "features": [
+      "Multifunction sports steering wheel in nappa leather",
+      "Heat-insulating dark tinted glass",
+      "Ambient lighting",
+      "AMG floor mats",
+      "Centre console in a black crystal-look finish",
+      "EASY ADJUST luxury head restraints for driver and front passenger, folding on passenger side",
+      "Seat on front passenger side electrically adjustable from rear",
+      "Climatised rear/front seats",
+      "Wireless charger in front/rear",
+      "Sun protection package",
+      "Remote Parking package",
+      "Panoramic sunroof",
+      "GUARD 360 ° Vehicle protection Plus",
+      "OLED central display",
+      "Fingerprint scanner",
+      "Pre entry climate control",
+      "Burmester ®️ 3D surround sound system",
+      "Active lane assist",
+      "Airmatic suspension",
+      "Apple carplay",
+      "Soft close doors",
+      "Power boot",
+      "Heads-up display",
+      "Sound personalization",
+      "Heated windscreen"
+    ],
+    "bestFor": "For executives who value rear-seat comfort as much as the drive.",
+    "usp": "A long-wheelbase executive cabin with climatised front and rear seating.",
+    "attractions": [
+      {
+        "label": "Suspension",
+        "value": "AIRMATIC"
+      },
+      {
+        "label": "Cabin sound",
+        "value": "Burmester 3D"
+      },
+      {
+        "label": "Powertrain",
+        "value": "Plug-in hybrid"
+      }
+    ],
+    "showroom": {
+      "src": "/assets/road/cars/mercedes-s580e-l-2022-1000.webp",
+      "small": "/assets/road/cars/mercedes-s580e-l-2022-600.webp",
+      "order": 0,
+      "preview": "/assets/wheel/mercedes-s580e-l-2022-1000.webp",
+      "previewSmall": "/assets/wheel/mercedes-s580e-l-2022-640.webp"
+    }
+  },
+  {
+    "id": "bmw-ix3-2022",
+    "name": "BMW iX3",
+    "year": 2022,
+    "mileage": 10000,
+    "trim": "M Sport",
+    "colour": "Carbon black metallic",
+    "importYear": 2026,
+    "price": null,
+    "status": "available",
+    "photos": [
+      {
+        "src": "/assets/cars/bmw-ix3-2022-1-1280.webp",
+        "medium": "/assets/cars/bmw-ix3-2022-1-800.webp",
+        "small": "/assets/cars/bmw-ix3-2022-1-400.webp",
+        "width": 1600,
+        "height": 1568,
+        "alt": "BMW iX3 — Front exterior in SAM showroom",
+        "description": "Front exterior in SAM showroom",
+        "objectPosition": "50% 90%",
+        "srcWidth": 1280,
+        "mediumWidth": 800,
+        "smallWidth": 400
+      },
+      {
+        "src": "/assets/cars/bmw-ix3-2022-2-1280.webp",
+        "medium": "/assets/cars/bmw-ix3-2022-2-800.webp",
+        "small": "/assets/cars/bmw-ix3-2022-2-400.webp",
+        "width": 1189,
+        "height": 1165,
+        "alt": "BMW iX3 — Front three-quarter exterior in SAM showroom",
+        "description": "Front three-quarter exterior in SAM showroom",
+        "objectPosition": "50% 90%",
+        "srcWidth": 1189,
+        "mediumWidth": 800,
+        "smallWidth": 400
+      },
+      {
+        "src": "/assets/cars/bmw-ix3-2022-3-1280.webp",
+        "medium": "/assets/cars/bmw-ix3-2022-3-800.webp",
+        "small": "/assets/cars/bmw-ix3-2022-3-400.webp",
+        "width": 638,
+        "height": 626,
+        "alt": "BMW iX3 — Instrument cluster and odometer",
+        "description": "Instrument cluster and odometer",
+        "objectPosition": "50% 75%",
+        "srcWidth": 638,
+        "mediumWidth": 638,
+        "smallWidth": 400
+      },
+      {
+        "src": "/assets/cars/bmw-ix3-2022-5-1280.webp",
+        "medium": "/assets/cars/bmw-ix3-2022-5-800.webp",
+        "small": "/assets/cars/bmw-ix3-2022-5-400.webp",
+        "width": 960,
+        "height": 942,
+        "alt": "BMW iX3 — Front seats and cabin",
+        "description": "Front seats and cabin",
+        "objectPosition": "50% 55%",
+        "srcWidth": 960,
+        "mediumWidth": 800,
+        "smallWidth": 400
+      }
+    ],
+    "videoUrl": null,
+    "inspectionUrl": null,
+    "notes": [
+      "Fresh import"
+    ],
+    "instagramPermalink": "https://www.instagram.com/sam.automobiles/p/DeWk8zbjiOi/",
+    "make": "BMW",
+    "model": "iX3",
+    "registration": "Unregistered",
+    "interior": "Brown leather",
+    "auctionGrade": "5A",
+    "advertisedDate": "2026-10-11",
+    "body": "SUV",
+    "fuel": "Electric",
+    "origin": null,
+    "importMileageKm": null,
+    "features": [
+      "Panoramic sunroof",
+      "Heads-up display",
+      "Electric memory seats with lumbar support adjustment",
+      "Heated steering wheel",
+      "Heated seats",
+      "Harman/kardon sound system",
+      "Wireless charger",
+      "Auto parking",
+      "BMW live cockpit",
+      "Tire pressure monitor",
+      "Ambient lights",
+      "Driving modes",
+      "360 degree cameras",
+      "Adaptive cruise control",
+      "20\"' alloy rims",
+      "Power boot",
+      "M sports"
+    ],
+    "bestFor": "For drivers who want an electric SUV for commuting and family plans.",
+    "usp": "An all-electric SUV with the presence of BMW’s M Sport package.",
+    "attractions": [
+      {
+        "label": "0–100 km/h",
+        "value": "6.8 seconds",
+        "manufacturer": true
+      },
+      {
+        "label": "Top speed",
+        "value": "180 km/h",
+        "manufacturer": true
+      },
+      {
+        "label": "Cabin sound",
+        "value": "Harman/Kardon"
+      }
+    ],
+    "performanceSource": {
+      "title": "BMW iX3: official model specifications",
+      "url": "https://www.press.bmwgroup.com/new-zealand/article/attachment/T0339456EN/487734"
+    },
+    "performanceNote": "Manufacturer figures for the first-generation G08 iX3; top speed is electronically limited. These are model reference figures, not a test of this car.",
+    "showroom": {
+      "src": "/assets/road/cars/bmw-ix3-2022-1000.webp",
+      "small": "/assets/road/cars/bmw-ix3-2022-600.webp",
+      "order": 3,
+      "preview": "/assets/wheel/bmw-ix3-2022-1000.webp",
+      "previewSmall": "/assets/wheel/bmw-ix3-2022-640.webp"
+    }
+  },
+  {
+    "id": "toyota-fortuner-2020",
+    "name": "Toyota Fortuner Sigma",
+    "year": 2020,
+    "mileage": null,
+    "trim": "TRD Sportivo",
+    "colour": "White",
+    "importYear": null,
+    "price": null,
+    "status": "available",
+    "photos": [
+      {
+        "src": "/assets/cars/toyota-fortuner-2020-1-1280.webp",
+        "medium": "/assets/cars/toyota-fortuner-2020-1-800.webp",
+        "small": "/assets/cars/toyota-fortuner-2020-1-400.webp",
+        "width": 1214,
+        "height": 1280,
+        "alt": "Toyota Fortuner Sigma — Front exterior in SAM showroom",
+        "description": "Front exterior in SAM showroom",
+        "objectPosition": "50% 90%",
+        "srcWidth": 1214,
+        "mediumWidth": 759,
+        "smallWidth": 379
+      },
+      {
+        "src": "/assets/cars/toyota-fortuner-2020-2-1280.webp",
+        "medium": "/assets/cars/toyota-fortuner-2020-2-800.webp",
+        "small": "/assets/cars/toyota-fortuner-2020-2-400.webp",
+        "width": 1216,
+        "height": 1280,
+        "alt": "Toyota Fortuner Sigma — Front three-quarter exterior in SAM showroom",
+        "description": "Front three-quarter exterior in SAM showroom",
+        "objectPosition": "50% 85%",
+        "srcWidth": 1216,
+        "mediumWidth": 760,
+        "smallWidth": 380
+      },
+      {
+        "src": "/assets/cars/toyota-fortuner-2020-3-1280.webp",
+        "medium": "/assets/cars/toyota-fortuner-2020-3-800.webp",
+        "small": "/assets/cars/toyota-fortuner-2020-3-400.webp",
+        "width": 1209,
+        "height": 1272,
+        "alt": "Toyota Fortuner Sigma — Rear three-quarter exterior",
+        "description": "Rear three-quarter exterior",
+        "objectPosition": "50% 65%",
+        "srcWidth": 1209,
+        "mediumWidth": 760,
+        "smallWidth": 380
+      },
+      {
+        "src": "/assets/cars/toyota-fortuner-2020-4-1280.webp",
+        "medium": "/assets/cars/toyota-fortuner-2020-4-800.webp",
+        "small": "/assets/cars/toyota-fortuner-2020-4-400.webp",
+        "width": 960,
+        "height": 1012,
+        "alt": "Toyota Fortuner Sigma — Dashboard and driver area",
+        "description": "Dashboard and driver area",
+        "objectPosition": "50% 55%",
+        "srcWidth": 960,
+        "mediumWidth": 759,
+        "smallWidth": 379
+      },
+      {
+        "src": "/assets/cars/toyota-fortuner-2020-5-1280.webp",
+        "medium": "/assets/cars/toyota-fortuner-2020-5-800.webp",
+        "small": "/assets/cars/toyota-fortuner-2020-5-400.webp",
+        "width": 866,
+        "height": 913,
+        "alt": "Toyota Fortuner Sigma — Rear cabin",
+        "description": "Rear cabin",
+        "objectPosition": "50% 55%",
+        "srcWidth": 866,
+        "mediumWidth": 759,
+        "smallWidth": 379
+      },
+      {
+        "src": "/assets/cars/toyota-fortuner-2020-6-1280.webp",
+        "medium": "/assets/cars/toyota-fortuner-2020-6-800.webp",
+        "small": "/assets/cars/toyota-fortuner-2020-6-400.webp",
+        "width": 1054,
+        "height": 1111,
+        "alt": "Toyota Fortuner Sigma — Front seats and cabin",
+        "description": "Front seats and cabin",
+        "objectPosition": "50% 55%",
+        "srcWidth": 1054,
+        "mediumWidth": 759,
+        "smallWidth": 379
+      }
+    ],
+    "videoUrl": null,
+    "inspectionUrl": null,
+    "notes": [],
+    "instagramPermalink": "https://www.instagram.com/sam.automobiles/p/DeWkFHTjl0r/",
+    "make": "Toyota",
+    "model": "Fortuner",
+    "registration": "Sindh",
+    "interior": null,
+    "auctionGrade": null,
+    "advertisedDate": "2026-10-11",
+    "body": "SUV",
+    "fuel": null,
+    "origin": null,
+    "importMileageKm": null,
+    "features": [],
+    "bestFor": "For family travel and everyday driving with a higher SUV seating position.",
+    "usp": "Sigma specification with TRD Sportivo styling.",
+    "attractions": [
+      {
+        "label": "Specification",
+        "value": "Sigma"
+      },
+      {
+        "label": "Styling",
+        "value": "TRD Sportivo"
+      },
+      {
+        "label": "Body style",
+        "value": "SUV"
+      }
+    ],
+    "showroom": null
+  },
+  {
+    "id": "lexus-lx570-2018",
+    "name": "Lexus LX570",
+    "year": 2018,
+    "mileage": 54000,
+    "trim": null,
+    "colour": "Pearl white",
+    "importYear": 2021,
+    "price": null,
+    "status": "available",
+    "photos": [
+      {
+        "src": "/assets/cars/lexus-lx570-2018-1-1280.webp",
+        "medium": "/assets/cars/lexus-lx570-2018-1-800.webp",
+        "small": "/assets/cars/lexus-lx570-2018-1-400.webp",
+        "width": 1278,
+        "height": 1277,
+        "alt": "Lexus LX570 — Front exterior in SAM showroom",
+        "description": "Front exterior in SAM showroom",
+        "objectPosition": "50% 90%",
+        "srcWidth": 1278,
+        "mediumWidth": 800,
+        "smallWidth": 400
+      },
+      {
+        "src": "/assets/cars/lexus-lx570-2018-2-1280.webp",
+        "medium": "/assets/cars/lexus-lx570-2018-2-800.webp",
+        "small": "/assets/cars/lexus-lx570-2018-2-400.webp",
+        "width": 1280,
+        "height": 1280,
+        "alt": "Lexus LX570 — Front three-quarter exterior in SAM showroom",
+        "description": "Front three-quarter exterior in SAM showroom",
+        "objectPosition": "50% 90%",
+        "srcWidth": 1280,
+        "mediumWidth": 800,
+        "smallWidth": 400
+      },
+      {
+        "src": "/assets/cars/lexus-lx570-2018-3-1280.webp",
+        "medium": "/assets/cars/lexus-lx570-2018-3-800.webp",
+        "small": "/assets/cars/lexus-lx570-2018-3-400.webp",
+        "width": 1280,
+        "height": 1280,
+        "alt": "Lexus LX570 — Dashboard and driver area",
+        "description": "Dashboard and driver area",
+        "objectPosition": "50% 55%",
+        "srcWidth": 1280,
+        "mediumWidth": 800,
+        "smallWidth": 400
+      },
+      {
+        "src": "/assets/cars/lexus-lx570-2018-4-1280.webp",
+        "medium": "/assets/cars/lexus-lx570-2018-4-800.webp",
+        "small": "/assets/cars/lexus-lx570-2018-4-400.webp",
+        "width": 1280,
+        "height": 1280,
+        "alt": "Lexus LX570 — Instrument cluster and odometer",
+        "description": "Instrument cluster and odometer",
+        "objectPosition": "50% 75%",
+        "srcWidth": 1280,
+        "mediumWidth": 800,
+        "smallWidth": 400
+      },
+      {
+        "src": "/assets/cars/lexus-lx570-2018-5-1280.webp",
+        "medium": "/assets/cars/lexus-lx570-2018-5-800.webp",
+        "small": "/assets/cars/lexus-lx570-2018-5-400.webp",
+        "width": 960,
+        "height": 960,
+        "alt": "Lexus LX570 — Rear cabin",
+        "description": "Rear cabin",
+        "objectPosition": "50% 55%",
+        "srcWidth": 960,
+        "mediumWidth": 800,
+        "smallWidth": 400
+      },
+      {
+        "src": "/assets/cars/lexus-lx570-2018-6-1280.webp",
+        "medium": "/assets/cars/lexus-lx570-2018-6-800.webp",
+        "small": "/assets/cars/lexus-lx570-2018-6-400.webp",
+        "width": 1056,
+        "height": 1056,
+        "alt": "Lexus LX570 — Front seats and cabin",
+        "description": "Front seats and cabin",
+        "objectPosition": "50% 55%",
+        "srcWidth": 1056,
+        "mediumWidth": 800,
+        "smallWidth": 400
+      }
+    ],
+    "videoUrl": null,
+    "inspectionUrl": null,
+    "notes": [],
+    "instagramPermalink": "https://www.instagram.com/sam.automobiles/p/DeM2QiTjwrL/",
+    "make": "Lexus",
+    "model": "LX570",
+    "registration": "Sindh",
+    "interior": "Tan leather",
+    "auctionGrade": null,
+    "advertisedDate": "2026-10-07",
+    "body": "SUV",
+    "fuel": null,
+    "origin": null,
+    "importMileageKm": null,
+    "features": [
+      "Sunroof",
+      "Mark Levinson sound system",
+      "Cool box",
+      "Privacy glass",
+      "Rear entertainment",
+      "Auto trunk",
+      "Heads-up display",
+      "Body kit",
+      "Rear Blinds"
+    ],
+    "bestFor": "For families who want a luxurious cabin for everyday use and longer trips.",
+    "usp": "Tan leather, rear entertainment and Mark Levinson audio.",
+    "attractions": [
+      {
+        "label": "Cabin finish",
+        "value": "Tan leather"
+      },
+      {
+        "label": "Cabin sound",
+        "value": "Mark Levinson"
+      },
+      {
+        "label": "Rear cabin",
+        "value": "Entertainment screens"
+      }
+    ],
+    "showroom": null
+  },
+  {
+    "id": "toyota-land-cruiser-2023",
+    "name": "Toyota Land Cruiser ZX",
+    "year": 2023,
+    "mileage": 2500,
+    "trim": "ZX LC300",
+    "colour": "Pearl white",
+    "importYear": 2026,
+    "price": null,
+    "status": "available",
+    "photos": [
+      {
+        "src": "/assets/cars/toyota-land-cruiser-2023-1-1280.webp",
+        "medium": "/assets/cars/toyota-land-cruiser-2023-1-800.webp",
+        "small": "/assets/cars/toyota-land-cruiser-2023-1-400.webp",
+        "width": 2616,
+        "height": 2616,
+        "alt": "Toyota Land Cruiser ZX — Front exterior in SAM showroom",
+        "description": "Front exterior in SAM showroom",
+        "objectPosition": "50% 92%",
+        "srcWidth": 1280,
+        "mediumWidth": 800,
+        "smallWidth": 400
+      },
+      {
+        "src": "/assets/cars/toyota-land-cruiser-2023-2-1280.webp",
+        "medium": "/assets/cars/toyota-land-cruiser-2023-2-800.webp",
+        "small": "/assets/cars/toyota-land-cruiser-2023-2-400.webp",
+        "width": 3120,
+        "height": 3120,
+        "alt": "Toyota Land Cruiser ZX — Dashboard and driver area",
+        "description": "Dashboard and driver area",
+        "objectPosition": "50% 55%",
+        "srcWidth": 1280,
+        "mediumWidth": 800,
+        "smallWidth": 400
+      },
+      {
+        "src": "/assets/cars/toyota-land-cruiser-2023-3-1280.webp",
+        "medium": "/assets/cars/toyota-land-cruiser-2023-3-800.webp",
+        "small": "/assets/cars/toyota-land-cruiser-2023-3-400.webp",
+        "width": 3526,
+        "height": 3526,
+        "alt": "Toyota Land Cruiser ZX — Instrument cluster and odometer",
+        "description": "Instrument cluster and odometer",
+        "objectPosition": "50% 75%",
+        "srcWidth": 1280,
+        "mediumWidth": 800,
+        "smallWidth": 400
+      },
+      {
+        "src": "/assets/cars/toyota-land-cruiser-2023-4-1280.webp",
+        "medium": "/assets/cars/toyota-land-cruiser-2023-4-800.webp",
+        "small": "/assets/cars/toyota-land-cruiser-2023-4-400.webp",
+        "width": 1090,
+        "height": 1090,
+        "alt": "Toyota Land Cruiser ZX — Rear cabin",
+        "description": "Rear cabin",
+        "objectPosition": "50% 55%",
+        "srcWidth": 1090,
+        "mediumWidth": 800,
+        "smallWidth": 400
+      },
+      {
+        "src": "/assets/cars/toyota-land-cruiser-2023-5-1280.webp",
+        "medium": "/assets/cars/toyota-land-cruiser-2023-5-800.webp",
+        "small": "/assets/cars/toyota-land-cruiser-2023-5-400.webp",
+        "width": 1060,
+        "height": 1060,
+        "alt": "Toyota Land Cruiser ZX — Centre console",
+        "description": "Centre console",
+        "objectPosition": "50% 55%",
+        "srcWidth": 1060,
+        "mediumWidth": 800,
+        "smallWidth": 400
+      }
+    ],
+    "videoUrl": null,
+    "inspectionUrl": null,
+    "notes": [
+      "Fresh clear"
+    ],
+    "instagramPermalink": "https://www.instagram.com/sam.automobiles/p/DeKPVW1jo4v/",
+    "make": "Toyota",
+    "model": "Land Cruiser",
+    "registration": "Unregistered",
+    "interior": "Beige leather",
+    "auctionGrade": "5A",
+    "advertisedDate": "2026-10-06",
+    "body": "SUV",
+    "fuel": null,
+    "origin": null,
+    "importMileageKm": null,
+    "features": [
+      "Sunroof",
+      "Rear entertainment",
+      "Cool box",
+      "7 seater",
+      "Auto trunk",
+      "JBL sound system",
+      "Fingerprint scanner",
+      "Body kit"
+    ],
+    "bestFor": "For families and touring drivers who want seven seats with flagship-SUV comfort.",
+    "usp": "Seven seats with rear entertainment and a JBL sound system.",
+    "attractions": [
+      {
+        "label": "Seating",
+        "value": "7 seats"
+      },
+      {
+        "label": "Cabin sound",
+        "value": "JBL"
+      },
+      {
+        "label": "Rear cabin",
+        "value": "Entertainment screens"
+      }
+    ],
+    "showroom": {
+      "src": "/assets/road/cars/toyota-land-cruiser-2023-1000.webp",
+      "small": "/assets/road/cars/toyota-land-cruiser-2023-600.webp",
+      "order": 5,
+      "preview": "/assets/wheel/toyota-land-cruiser-2023-1000.webp",
+      "previewSmall": "/assets/wheel/toyota-land-cruiser-2023-640.webp"
+    }
+  }
+]

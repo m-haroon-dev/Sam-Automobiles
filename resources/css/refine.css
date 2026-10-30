@@ -1,0 +1,64 @@
+/* Public-site refinement, loaded after showroom.css so the approved stylesheet stays untouched.
+   Replaces the glass pills and arrow badges with flat, tailored controls, swaps grey boxes for hairlines
+   and adds a quiet brass accent. The filmed showroom hero keeps its own controls.
+   Selectors that style <button> elements are written as :is(a,button).x so they outrank the showroom's
+   blanket `button:not(...)` glass rule. */
+
+:root { --brass:#7a5c34; --brass-light:#c9ad80; --hairline:rgb(36 43 36 / 14%); }
+
+/* Labels: a brass small-caps line instead of grey. */
+.eyebrow { color:var(--brass); font-size:12px; letter-spacing:.2em; }
+/* The home page's <body> carries .dark too, so only genuinely dark sections get the lighter brass. */
+:is(section.dark,.showroom-story,.site-footer) .eyebrow { color:var(--brass-light); }
+
+/* Buttons: solid fills, 8px corners, no glass, no badge around the arrow. */
+:is(a,button).button { gap:12px; border:1px solid transparent; border-radius:8px; background-image:none; box-shadow:none; -webkit-backdrop-filter:none; backdrop-filter:none; font-weight:500; letter-spacing:.01em; transition:background-color 200ms ease,border-color 200ms ease,color 200ms ease; }
+:is(a,button).button:hover, :is(a,button).button:active { transform:none; }
+:is(a,button).button.ink { background-color:#1d221e; color:#f2f3ee; }
+:is(a,button).button.ink:hover { background-color:#2f3a31; }
+/* Each section sets --ink for its own background, so outlined buttons follow it on light and dark alike. */
+:is(a,button).button.secondary { border-color:color-mix(in srgb,var(--ink) 30%,transparent); background:none; background-color:transparent; color:var(--ink); }
+:is(a,button).button.secondary:hover { border-color:var(--ink); }
+/* Car page: one clear primary action (enquire); asking the price is the outlined alternative. */
+.vehicle-enquiry button.button { background-color:#1d221e; color:#f2f3ee; }
+.vehicle-enquiry button.button:hover { background-color:#2f3a31; }
+.vehicle-enquiry a.button { border-color:color-mix(in srgb,var(--ink) 30%,transparent); background:none; background-color:transparent; color:var(--ink); }
+.vehicle-enquiry a.button:hover { border-color:var(--ink); }
+button.utility { border:1px solid var(--hairline); border-radius:8px; background:none; background-color:transparent; box-shadow:none; -webkit-backdrop-filter:none; backdrop-filter:none; }
+button.utility:hover { border-color:var(--ink); }
+.button .button-icon { display:inline-flex; width:auto; height:auto; margin:0; border-radius:0; background:none; color:inherit; box-shadow:none; }
+.button .button-icon .icon, .button > .icon { width:16px; height:16px; }
+.button:hover .button-icon { transform:translate(2px,-2px); }
+
+/* Secondary links read as links: underlined text, not pills. */
+.text-link:not(.source-link) { min-height:44px; padding:0; border:0; border-radius:0; background:none; box-shadow:none; -webkit-backdrop-filter:none; backdrop-filter:none; font-weight:500; text-decoration:underline; text-decoration-thickness:1px; text-underline-offset:7px; text-decoration-color:color-mix(in srgb,currentColor 35%,transparent); transition:text-decoration-color 200ms ease; }
+.text-link:not(.source-link):hover { opacity:1; text-decoration-color:currentColor; }
+
+/* Category chips and small round controls: outlined, flat. */
+.category-link { border:1px solid var(--hairline); background:none; background-color:transparent; box-shadow:none; -webkit-backdrop-filter:none; backdrop-filter:none; }
+.category-link:hover { border-color:var(--paper-ink); background-color:var(--paper-ink); background-image:none; color:var(--paper); }
+:is(a,button).save-button, :is(a,button).compare-toggle, .paper :is(a,button).circle-button { border:1px solid var(--hairline); background:none; background-color:transparent; box-shadow:none; -webkit-backdrop-filter:none; backdrop-filter:none; }
+:is(a,button).compare-toggle { border:0; padding:0 2px; }
+.saved-cars-link, .nav-tools > a { border:1px solid color-mix(in srgb,currentColor 28%,transparent); background:none; background-color:transparent; box-shadow:none; -webkit-backdrop-filter:none; backdrop-filter:none; }
+.header-viewing { border-radius:8px; background-image:none; -webkit-backdrop-filter:none; backdrop-filter:none; }
+.home-header .header-viewing { padding:7px 16px; }
+.home-header .header-viewing .button-icon { width:auto; height:auto; border-radius:0; background:none; }
+.whatsapp-float { border:1px solid var(--hairline); background:#fff; background-image:none; box-shadow:0 14px 34px -20px rgb(23 26 24 / 45%); -webkit-backdrop-filter:none; backdrop-filter:none; }
+
+/* Grey boxes become hairlines and a brass rule. */
+.car-standout { padding:2px 0 2px 16px; border-left:2px solid var(--brass); background:none; }
+.car-standout strong { color:var(--brass); font-size:12px; font-weight:500; letter-spacing:.16em; text-transform:uppercase; }
+.attraction-facts > div { padding:22px 0 0; border-top:1px solid var(--hairline); background:none; }
+.attraction-facts dt { color:var(--brass); font-size:12px; letter-spacing:.16em; text-transform:uppercase; }
+.attraction-facts dd { font:400 clamp(1.75rem,2.6vw,2.25rem)/1.1 'Instrument Serif',Georgia,serif; letter-spacing:-.02em; }
+.filter-panel, .vehicle-enquiry, .visit-form, .trade-form { border:1px solid var(--hairline); border-radius:14px; background:#fff; }
+/* Fields: a quiet stone fill with a hairline edge that darkens on focus. */
+.field :is(input,select,textarea) { border:1px solid var(--hairline); border-radius:8px; background:#f7f7f3; transition:border-color 150ms ease,background-color 150ms ease; }
+.field :is(input,select,textarea):focus { border-color:var(--paper-ink); background:#fff; }
+.vehicle-standout { border-bottom:1px solid var(--hairline); }
+
+@media (max-width:767px) {
+ .attraction-facts > div { padding:16px 0 0; }
+ .attraction-facts dd { font-size:1.5rem; }
+}
+@media (prefers-reduced-motion:reduce) { :is(a,button).button, .text-link:not(.source-link) { transition:none; } .button:hover .button-icon { transform:none; } }

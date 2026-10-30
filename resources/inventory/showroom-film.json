@@ -1,0 +1,9 @@
+{
+  "primary": "/assets/showroom-film/sam-showroom-720.mp4",
+  "mobile": "/assets/showroom-film/sam-showroom-540.mp4",
+  "poster": "/assets/showroom-film/sam-showroom-poster.webp",
+  "width": 720,
+  "height": 1280,
+  "durationSeconds": 37.67,
+  "frameRate": 60
+}

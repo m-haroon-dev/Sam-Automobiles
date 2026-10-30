@@ -1,0 +1,19 @@
+{
+  "fps": 60,
+  "width": 1536,
+  "height": 1024,
+  "phoneWidth": 720,
+  "phoneHeight": 480,
+  "secondsPerCar": 7,
+  "duration": 42,
+  "models": [
+    "mercedes-s580e-l-2022",
+    "mercedes-amg-g63-model",
+    "porsche-taycan-2022",
+    "bmw-ix3-2022",
+    "lexus-lx570-2020",
+    "toyota-land-cruiser-2023"
+  ],
+  "sourceHeroHash": "7aaf0d7fc5edf7701be5f58e0f8fa1c4c7a575267e9d6c91e4a0b34ae57d9e26",
+  "method": "Deterministic capture of the approved original GSAP showroom, doors, tyres, lights and number plates. H264, muted, fast-start."
+}
