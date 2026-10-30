@@ -1,0 +1,86 @@
+{
+  "_Icon-DYPNjTvN.js": {
+    "file": "assets/Icon-DYPNjTvN.js",
+    "name": "Icon",
+    "imports": [
+      "_rolldown-runtime-WkwZ5CU-.js",
+      "_react-D30i__oY.js"
+    ]
+  },
+  "_motion-mCVBNEMj.js": {
+    "file": "assets/motion-mCVBNEMj.js",
+    "name": "motion",
+    "imports": [
+      "_rolldown-runtime-WkwZ5CU-.js",
+      "_react-D30i__oY.js"
+    ]
+  },
+  "_react-D30i__oY.js": {
+    "file": "assets/react-D30i__oY.js",
+    "name": "react",
+    "imports": [
+      "_rolldown-runtime-WkwZ5CU-.js"
+    ]
+  },
+  "_rolldown-runtime-WkwZ5CU-.js": {
+    "file": "assets/rolldown-runtime-WkwZ5CU-.js",
+    "name": "rolldown-runtime"
+  },
+  "resources/css/app.css": {
+    "file": "assets/app-DGVrq7RZ.css",
+    "name": "app",
+    "names": [
+      "app.css"
+    ],
+    "src": "resources/css/app.css",
+    "isEntry": true
+  },
+  "resources/js/app.jsx": {
+    "file": "assets/app-QINfTgwA.js",
+    "name": "app",
+    "src": "resources/js/app.jsx",
+    "isEntry": true,
+    "imports": [
+      "_rolldown-runtime-WkwZ5CU-.js",
+      "_react-D30i__oY.js"
+    ],
+    "dynamicImports": [
+      "resources/js/pages/AdminApp.jsx",
+      "resources/js/pages/PublicApp.jsx"
+    ]
+  },
+  "resources/js/motion/wheel.js": {
+    "file": "assets/wheel-TPWjaMFo.js",
+    "name": "wheel",
+    "src": "resources/js/motion/wheel.js",
+    "isDynamicEntry": true
+  },
+  "resources/js/pages/AdminApp.jsx": {
+    "file": "assets/AdminApp-DVsBLW5g.js",
+    "name": "AdminApp",
+    "src": "resources/js/pages/AdminApp.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "_rolldown-runtime-WkwZ5CU-.js",
+      "_react-D30i__oY.js",
+      "resources/js/app.jsx",
+      "_Icon-DYPNjTvN.js"
+    ]
+  },
+  "resources/js/pages/PublicApp.jsx": {
+    "file": "assets/PublicApp-CCf7lt3L.js",
+    "name": "PublicApp",
+    "src": "resources/js/pages/PublicApp.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "_rolldown-runtime-WkwZ5CU-.js",
+      "_react-D30i__oY.js",
+      "resources/js/app.jsx",
+      "_Icon-DYPNjTvN.js",
+      "_motion-mCVBNEMj.js"
+    ],
+    "dynamicImports": [
+      "resources/js/motion/wheel.js"
+    ]
+  }
+}

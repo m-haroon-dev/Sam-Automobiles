@@ -36,7 +36,10 @@ class CategoryManagementTest extends TestCase
 
     public function test_seeded_cars_are_grouped_by_their_body_style(): void
     {
-        $this->assertSame(['Pickup' => 1, 'SUV' => 5, 'Saloon' => 3], Category::withCount('cars')->orderBy('name')->pluck('cars_count', 'name')->all());
+        // Sorted in PHP: SQLite and MySQL collate 'SUV' and 'Saloon' differently.
+        $counts = Category::withCount('cars')->pluck('cars_count', 'name')->all();
+        ksort($counts);
+        $this->assertSame(['Pickup' => 1, 'SUV' => 5, 'Saloon' => 3], $counts);
         $this->assertDatabaseMissing('cars', ['category_id' => null]);
     }
 
