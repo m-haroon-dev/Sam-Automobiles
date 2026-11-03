@@ -1,5 +1,7 @@
-// No form data is stored, uploaded or sent until the visitor chooses WhatsApp
-// or the native share sheet. Tracking receives event names, never form contents.
+// No form data is stored. When the showroom has connected a mailbox (Admin › Email),
+// a valid enquiry and its photos are emailed to SAM before WhatsApp opens; otherwise
+// nothing is sent until the visitor chooses WhatsApp or the native share sheet.
+// Tracking receives event names, never form contents.
 export function normalizePakistanPhone(value='') {
   const raw=String(value).trim();
   if(!/^[+\d\s()-]+$/.test(raw))return null;
@@ -45,4 +47,14 @@ export function validateTrade(fields,files=[],now=new Date()) {
 }
 export function viewingMessage(fields,car,site){return [`Hello SAM Automobiles, I’d like to request a viewing.`,`Name: ${fields.name}`,`Mobile: ${fields.phone}`,car?`Car: ${car.year||''} ${car.name}${car.trim?' · '+car.trim:''}`:'Car: I’m exploring the collection.',`Preferred day: ${fields.day}`,`Preferred time: ${fields.time} (Karachi, UTC+05:00)`,fields.message?.trim()||'',car?`${site.origin}/cars/${car.id}/`:`${site.origin}/inventory/`].filter(Boolean).join('\n');}
 export function tradeMessage(fields,files=[]){return [`Hello SAM Automobiles, I’d like to ${fields.intent==='trade'?'discuss a trade-in':'sell my car'}.`,`Name: ${fields.name}`,`Mobile: ${fields.phone}`,`Car: ${fields.year} ${fields.car}`,`Mileage: ${Number(fields.mileage).toLocaleString('en-GB')} km`,fields.message?.trim()||'',files.length?`${files.length} photo${files.length===1?'':'s'} selected; I will attach them in this conversation.`:'Photos can be provided on request.'].filter(Boolean).join('\n');}
+// Shrinks photos to 1920px JPEGs so six phone pictures stay well inside mail limits.
+// Files the browser cannot decode (often HEIC) are sent unchanged.
+async function shrinkPhoto(file,edge=1920){try{const bitmap=await createImageBitmap(file),scale=Math.min(1,edge/Math.max(bitmap.width,bitmap.height)),canvas=document.createElement('canvas');canvas.width=Math.round(bitmap.width*scale);canvas.height=Math.round(bitmap.height*scale);canvas.getContext('2d').drawImage(bitmap,0,0,canvas.width,canvas.height);bitmap.close?.();const blob=await new Promise(r=>canvas.toBlob(r,'image/jpeg',.85));return blob&&blob.size<file.size?new File([blob],file.name.replace(/\.[^.]+$/,'')+'.jpg',{type:'image/jpeg'}):file;}catch{return file;}}
+// Resolves true once the server accepts the enquiry for email. Never rejects, so WhatsApp still opens if mail is down.
+export async function emailEnquiry(kind,values,files=[],timeout=15000){
+ const body=new FormData(),controller=new AbortController(),timer=setTimeout(()=>controller.abort(),timeout);body.set('kind',kind);
+ try{for(const [key,value] of Object.entries(values))if(key!=='photos')body.set(key,value??'');for(const file of await Promise.all(files.map(f=>shrinkPhoto(f))))body.append('photos[]',file);
+  const response=await fetch('/enquiries',{method:'POST',body,credentials:'same-origin',signal:controller.signal,headers:{Accept:'application/json','X-CSRF-TOKEN':document.querySelector('meta[name=csrf-token]')?.content||''}});
+  return response.ok&&(await response.json()).emailed===true;}catch{return false;}finally{clearTimeout(timer);}
+}
 export const whatsappMessageURL=(site,message)=>'https://wa.me/'+site.phone.replace(/\D/g,'')+'?text='+encodeURIComponent(message);

@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Car;
+use App\Models\MailSetting;
 
 class Catalogue
 {
@@ -27,6 +28,8 @@ class Catalogue
         usort($heroEntries, fn ($a, $b) => ($a['showroom']['order'] ?? 99) <=> ($b['showroom']['order'] ?? 99));
         $site = $this->config('site');
         $site['origin'] = rtrim(config('app.url'), '/');
+        // Enquiry forms also email the showroom once a mailbox is connected under Admin › Email.
+        $site['emailsEnquiries'] = (bool) MailSetting::current()?->is_enabled;
 
         return ['site' => $site, 'heroCars' => $heroEntries, 'cars' => $records->map->publicData()->values()->all(),
             'featuredCars' => $records->filter(fn ($c) => $c->status === 'available' && $c->is_featured)->sortBy('featured_order')->map->publicData()->values()->all(),

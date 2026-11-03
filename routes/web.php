@@ -4,9 +4,11 @@ use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\CarController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\MailSettingsController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\CatalogueController;
+use App\Http\Controllers\EnquiryController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Middleware\EncryptHistory;
 
@@ -18,6 +20,7 @@ Route::get('/cars/{slug}', [CatalogueController::class, 'car'])->name('cars.show
 Route::get('/models/{slug}', [CatalogueController::class, 'model']);
 Route::get('/cars.json', [CatalogueController::class, 'json']);
 Route::get('/sitemap.xml', [CatalogueController::class, 'sitemap']);
+Route::post('/enquiries', [EnquiryController::class, 'store'])->middleware('throttle:5,1');
 Route::get('/robots.txt', fn () => response("User-agent: *\nAllow: /\nDisallow: /admin\nSitemap: ".rtrim(config('app.url'), '/')."/sitemap.xml\n")->header('Content-Type', 'text/plain'));
 Route::middleware('guest')->group(function () {
     Route::get('/admin/login', [AuthController::class, 'create'])->name('login');
@@ -54,6 +57,10 @@ Route::middleware(['auth', 'panel', EncryptHistory::class])->prefix('admin')->gr
         Route::put('/users/{user}', [UserController::class, 'update']);
         Route::delete('/users/{user}', [UserController::class, 'destroy']);
         Route::post('/users/{user}/make-admin', [UserController::class, 'makeAdmin']);
+        Route::get('/mail', [MailSettingsController::class, 'show'])->name('admin.mail');
+        Route::put('/mail', [MailSettingsController::class, 'update']);
+        Route::get('/mail/provider', [MailSettingsController::class, 'provider'])->middleware('throttle:60,1');
+        Route::post('/mail/test', [MailSettingsController::class, 'test'])->middleware('throttle:6,1');
     });
 });
 Route::fallback(fn () => app(CatalogueController::class)->page(request(), 'NotFound')->toResponse(request())->setStatusCode(404));

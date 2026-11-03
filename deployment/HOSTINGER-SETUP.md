@@ -67,6 +67,6 @@ The source package contains local QA evidence references and reusable tests. Loc
 
 Use `/admin` to add/edit cars, choose Featured, reorder photos, mark Sold, and archive/restore records. Database changes appear after a visitor refreshes or navigates to the page; a build is not needed. The original filmed hero remains unchanged. Database and uploaded-file backups must be retained together. Never rerun `migrate:fresh` on a live site. Repeating the initial seeder will not overwrite owner edits.
 
-The enquiry forms continue through WhatsApp. No email service, payment gateway, customer-login system or lead CRM is configured because these were not part of this inventory request.
+The enquiry forms continue through WhatsApp. To also receive them by email, sign in as the Admin, open **Email**, enter the mailbox address and its password (a Gmail/Google Workspace App Password, or the Hostinger mailbox password from hPanel › Emails) and use **Send test email**. No payment gateway, customer-login system or lead CRM is configured.
 
 References: [Laravel deployment](https://laravel.com/framework/docs/deployment), [Laravel public file storage](https://laravel.com/framework/docs/13.x/filesystem), [Hostinger framework support](https://www.hostinger.com/support/which-programming-languages-and-frameworks-are-supported-at-hostinger/).

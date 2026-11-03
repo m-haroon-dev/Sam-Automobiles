@@ -10,6 +10,7 @@ Sign in at `/admin/login`. The left sidebar opens the **Dashboard** (stock count
 - There is exactly **one Admin**. Everyone else is a **User** who can sign in and add, edit, sell, feature, archive and delete cars, and add, edit and delete categories. Only the Admin sees **Users**: they create users (with an optional profile photo), edit names, emails and photos, set a new password, turn sign-in off or delete a user. **Make admin** hands the single Admin role to another active user, and the previous Admin becomes a User. `sam:create-admin` refuses to create a second Admin.
 - **My profile** (bottom of the sidebar) lets every account change its own name, profile photo and password. Photos are JPEG, PNG or WebP up to 5 MB, stored as 256px square WebP files under `storage/app/public/avatars`. Password fields have Show/Hide, a live requirements checklist and, for new users, a strong-password generator; passwords need at least 12 characters with mixed case, a number and a symbol. A new password, turned-off sign-in or deletion signs that user out elsewhere.
 - **Featured** selects available cars for the homepage collection. Lower homepage-order numbers appear first.
+- **Email** (Admin only) connects the mailbox that receives website enquiries. Enter the email and its password; the SMTP server, port and security fill in from the domain (Gmail, Outlook, Yahoo, iCloud and Zoho addresses, and for business domains from their MX records: Google Workspace, Microsoft 365, Hostinger, Zoho, Titan, GoDaddy; otherwise `mail.<domain>`) and can be changed under Advanced. Gmail needs an App Password. **Send test email** checks the connection. The password is stored encrypted with `APP_KEY`.
 - **Mark sold** retains the listing and adds its Sold tag, removes it from featured cars and adds it to Recently sold.
 - Edit photo descriptions, accessible descriptions, vertical framing and cover/order. Upload up to 12 photographs per save, 10 MB each, 30 per car. Export HEIC files as JPEG before upload.
 - **Archive** hides a listing while retaining its photographs. Filter by Archived to restore it as a private Draft.
@@ -52,7 +53,7 @@ See `deployment/HOSTINGER-SETUP.md`. The prebuilt Hostinger package includes pro
 
 ## Data boundaries
 
-Saved cars and comparison choices remain in the visitor's browser. Viewing and sell/trade forms prepare WhatsApp messages; they do not send a message automatically or store customer leads in the database. Google review excerpts, portraits, branding and social posts remain the existing verified source content; there is no automatic Google/Instagram feed or background scraping.
+Saved cars and comparison choices remain in the visitor's browser. Viewing and sell/trade forms prepare WhatsApp messages. When a mailbox is connected under Admin › Email, each valid enquiry (with sell/trade photos, resized in the browser and capped at 20 MB) is also emailed to the showroom inbox; nothing is stored in the database. Google review excerpts, portraits, branding and social posts remain the existing verified source content; there is no automatic Google/Instagram feed or background scraping.
 
 Back up the SQL database, `storage/app/public`, and the private `.env` before upgrades. The database stores uploaded-photo paths; the files themselves live on disk. The existing seed photographs live under public assets.
 
