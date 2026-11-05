@@ -49,6 +49,7 @@ class Car extends Model
             'notes' => $this->notes ?? [], 'showroom' => $this->showroom, 'performanceSource' => $this->performance_source,
             'performanceNote' => $this->performance_note, 'sourceUrl' => $this->source_url, 'instagramPermalink' => $this->source_url,
             'advertisedDate' => $this->published_at?->format('Y-m-d'), 'isFeatured' => $this->is_featured,
+            'model3d' => $this->model_3d ? '/storage/'.$this->model_3d : null,
             'photos' => $this->photos->map->publicData()->values()->all()];
     }
 }

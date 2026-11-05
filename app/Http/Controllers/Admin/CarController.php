@@ -113,6 +113,7 @@ class CarController extends Controller
     {
         $record = Car::onlyTrashed()->with('photos')->findOrFail($car);
         $directories = $record->photos->pluck('directory')->filter()->all();
+        $model = $record->model_3d;
         DB::transaction(function () use ($record) {
             CarPhoto::where('car_id', $record->id)->delete();
             $record->forceDelete();
@@ -120,8 +121,11 @@ class CarController extends Controller
         foreach ($directories as $directory) {
             Storage::disk('public')->deleteDirectory($directory);
         }
+        if ($model) {
+            Storage::disk('public')->delete($model);
+        }
 
-        return back()->with('success', 'Car permanently deleted with its uploaded photographs.');
+        return back()->with('success', 'Car permanently deleted with its uploaded photographs and 3D model.');
     }
 
     public function restore(int $car): RedirectResponse
@@ -135,6 +139,6 @@ class CarController extends Controller
 
     private function record(Car $car): array
     {
-        return [...$car->toArray(), 'photos' => $car->photos->map(fn ($p) => ['id' => $p->id, ...$p->publicData()])->all(), 'public_url' => '/cars/'.$car->slug.'/'];
+        return [...$car->toArray(), 'photos' => $car->photos->map(fn ($p) => ['id' => $p->id, ...$p->publicData()])->all(), 'public_url' => '/cars/'.$car->slug.'/', 'model_url' => $car->model_3d ? '/storage/'.$car->model_3d : null];
     }
 }

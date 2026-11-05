@@ -17,9 +17,24 @@ class SaveCar
     {
         $created = [];
         $removed = [];
+        $newModel = null;
+        $oldModel = null;
         try {
-            DB::transaction(function () use ($car, $data, &$created, &$removed) {
-                $attributes = Arr::except($data, ['uploads', 'photo_order', 'remove_photo_ids', 'photo_updates']);
+            DB::transaction(function () use ($car, $data, &$created, &$removed, &$newModel, &$oldModel) {
+                $attributes = Arr::except($data, ['uploads', 'photo_order', 'remove_photo_ids', 'photo_updates', 'model_upload', 'remove_model']);
+                // A new or removed 3D model; the old file is deleted only once the save has committed.
+                // Each upload gets a fresh name, so browsers and the service worker never show a cached older model.
+                if (($data['model_upload'] ?? null) || ($data['remove_model'] ?? false)) {
+                    $oldModel = $car->model_3d;
+                    $attributes['model_3d'] = null;
+                    if ($upload = $data['model_upload'] ?? null) {
+                        $newModel = Storage::disk('public')->putFileAs('cars/models', $upload, Str::lower(Str::random(32)).'.glb');
+                        if (! $newModel) {
+                            throw ValidationException::withMessages(['model_upload' => 'The 3D model could not be stored. Try again.']);
+                        }
+                        $attributes['model_3d'] = $newModel;
+                    }
+                }
                 if (! $car->exists) {
                     $slug = $attributes['slug'] ?? Str::slug($attributes['name'].' '.($attributes['year'] ?? ''));
                     if (! $slug) {
@@ -74,10 +89,16 @@ class SaveCar
         } catch (\Throwable $error) {
             foreach ($created as $directory) {
                 Storage::disk('public')->deleteDirectory($directory);
+            }
+            if ($newModel) {
+                Storage::disk('public')->delete($newModel);
             }throw $error;
         }
         foreach ($removed as $directory) {
             Storage::disk('public')->deleteDirectory($directory);
+        }
+        if ($oldModel && $oldModel !== $car->model_3d) {
+            Storage::disk('public')->delete($oldModel);
         }
 
         return $car->refresh()->load('photos');

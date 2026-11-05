@@ -1,6 +1,6 @@
 {
-  "_Icon-DYPNjTvN.js": {
-    "file": "assets/Icon-DYPNjTvN.js",
+  "_Icon-BXYOjrqY.js": {
+    "file": "assets/Icon-BXYOjrqY.js",
     "name": "Icon",
     "imports": [
       "_rolldown-runtime-WkwZ5CU-.js",
@@ -27,7 +27,7 @@
     "name": "rolldown-runtime"
   },
   "resources/css/app.css": {
-    "file": "assets/app-K-bWZwqE.css",
+    "file": "assets/app-CrwqE5u4.css",
     "name": "app",
     "names": [
       "app.css"
@@ -36,7 +36,7 @@
     "isEntry": true
   },
   "resources/js/app.jsx": {
-    "file": "assets/app-CXkgzEgO.js",
+    "file": "assets/app-DQLLtEO3.js",
     "name": "app",
     "src": "resources/js/app.jsx",
     "isEntry": true,
@@ -49,6 +49,17 @@
       "resources/js/pages/PublicApp.jsx"
     ]
   },
+  "resources/js/components/Car3D.jsx": {
+    "file": "assets/Car3D-deyROwYF.js",
+    "name": "Car3D",
+    "src": "resources/js/components/Car3D.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "_rolldown-runtime-WkwZ5CU-.js",
+      "_react-D30i__oY.js",
+      "_Icon-BXYOjrqY.js"
+    ]
+  },
   "resources/js/motion/wheel.js": {
     "file": "assets/wheel-TPWjaMFo.js",
     "name": "wheel",
@@ -56,7 +67,7 @@
     "isDynamicEntry": true
   },
   "resources/js/pages/AdminApp.jsx": {
-    "file": "assets/AdminApp-BA_Be5h_.js",
+    "file": "assets/AdminApp-BhOWVbV-.js",
     "name": "AdminApp",
     "src": "resources/js/pages/AdminApp.jsx",
     "isDynamicEntry": true,
@@ -64,11 +75,11 @@
       "_rolldown-runtime-WkwZ5CU-.js",
       "_react-D30i__oY.js",
       "resources/js/app.jsx",
-      "_Icon-DYPNjTvN.js"
+      "_Icon-BXYOjrqY.js"
     ]
   },
   "resources/js/pages/PublicApp.jsx": {
-    "file": "assets/PublicApp-BK8w9RGg.js",
+    "file": "assets/PublicApp-Rd7jO5D5.js",
     "name": "PublicApp",
     "src": "resources/js/pages/PublicApp.jsx",
     "isDynamicEntry": true,
@@ -76,11 +87,12 @@
       "_rolldown-runtime-WkwZ5CU-.js",
       "_react-D30i__oY.js",
       "resources/js/app.jsx",
-      "_Icon-DYPNjTvN.js",
+      "_Icon-BXYOjrqY.js",
       "_motion-mCVBNEMj.js"
     ],
     "dynamicImports": [
-      "resources/js/motion/wheel.js"
+      "resources/js/motion/wheel.js",
+      "resources/js/components/Car3D.jsx"
     ]
   }
 }
