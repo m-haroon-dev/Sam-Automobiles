@@ -1,0 +1,107 @@
+/* Premium layer, loaded after refine.css. A warm ivory and charcoal palette with one champagne-gold accent:
+   gold marks the primary action on dark grounds, labels, numbers and focus; everything else stays ink on ivory.
+   Only colours, depth and a few weights change here; layout and markup are untouched. */
+
+:root {
+  --canvas:#0f1110; --surface:#1c1f1d; --accent:#c8a96a; --accent-ink:#141513;
+  --paper:#f6f3ec; --paper-tone:#ece6da; --paper-ink:#151715; --paper-secondary:#5d6058;
+  --gold:#c8a96a; --gold-hover:#d9bd85; --brass:#86683a; --brass-light:#d6bb88; --hairline:rgb(21 23 21 / 12%);
+  --lift:0 28px 60px -38px rgb(21 23 21 / 38%);
+}
+.dark { --ink:#f4f1ea; --secondary:#b9b5ab; --surface:#1c1f1d; }
+::selection { background:var(--gold); color:var(--accent-ink); }
+
+/* Labels: gold small caps led by a short rule. */
+.eyebrow { display:inline-flex; align-items:center; gap:12px; font-weight:500; }
+.eyebrow::before { content:''; width:28px; height:1px; background:currentColor; opacity:.75; }
+
+/* Buttons: one shape everywhere. Ink on ivory; champagne gold on dark grounds and the filmed hero. */
+:is(a,button).button { border-radius:6px; letter-spacing:.02em; }
+:is(a,button).button.ink, .vehicle-enquiry button.button { background-color:var(--paper-ink); color:#f6f3ec; }
+:is(a,button).button.ink:hover, .vehicle-enquiry button.button:hover { background-color:#2b2e2a; }
+:is(a,button).button.ink .button-icon, .vehicle-enquiry button.button .button-icon { color:var(--gold); }
+:is(section.dark,.showroom-story,.site-footer,.compare-tray) :is(a,button).button:not(.secondary):not(.ink),
+section.road-hero a.button.hero-primary { border-color:var(--gold); background:var(--gold); background-image:none; color:var(--accent-ink); box-shadow:0 10px 30px -14px rgb(200 169 106 / 55%); }
+:is(section.dark,.showroom-story,.site-footer,.compare-tray) :is(a,button).button:not(.secondary):not(.ink):hover,
+section.road-hero a.button.hero-primary:hover { border-color:var(--gold-hover); background:var(--gold-hover); }
+.home-header .header-viewing { border-color:rgb(200 169 106 / 70%); }
+.home-header .header-viewing:hover { border-color:var(--gold); background:rgb(200 169 106 / 14%); }
+.text-link:not(.source-link):hover { text-decoration-color:var(--gold); }
+.category-link:hover { border-color:var(--paper-ink); }
+
+/* Section grounds: warm ivory and sand instead of grey-green. */
+.sell-feature, .trust-section { background:var(--paper-tone); }
+.sell-feature { border-block:1px solid var(--hairline); }
+.site-header:not(.home-header) { border-bottom:1px solid var(--hairline); }
+.mobile-enquiry-bar { background:var(--paper); border-top-color:var(--hairline); }
+
+/* Steps, reviews and figures: gold numbers on hairlines, reviews as quiet cards. */
+.buying-steps li { border-top:1px solid var(--hairline); position:relative; }
+.buying-steps li::before { content:''; position:absolute; top:-1px; left:0; width:48px; height:1px; background:var(--gold); }
+.buying-steps li > span { font:400 2.25rem/1 'Instrument Serif',Georgia,serif; color:var(--brass); margin-bottom:24px; }
+.testimonial { padding:28px; border:1px solid var(--hairline); border-radius:14px; background:#fbf9f4; box-shadow:var(--lift); }
+.review-stars { color:var(--gold); }
+.trust-stats { border-top-color:var(--hairline); }
+.trust-stats dt { font-size:12px; letter-spacing:.18em; text-transform:uppercase; color:var(--paper-secondary); }
+.trust-stats dd { margin-top:10px; color:var(--brass); font:400 clamp(3.25rem,6vw,5.5rem)/1 'Instrument Serif',Georgia,serif; letter-spacing:-.03em; }
+
+/* Cards and panels: a soft lift so the photographs and forms sit above the page. */
+.car-photo { border-radius:12px; }
+@media (hover:hover) { .car-card .car-photo { transition:box-shadow 300ms ease; } .car-card:hover .car-photo { box-shadow:var(--lift); } }
+.filter-panel, .vehicle-enquiry, .visit-form, .trade-form { background:#fbf9f4; box-shadow:var(--lift); }
+.field :is(input,select,textarea) { background:#f9f7f2; }
+.field :is(input,select,textarea):focus { border-color:var(--brass); box-shadow:0 0 0 3px rgb(200 169 106 / 22%); }
+
+/* Footer and floating chat: gold details on charcoal. */
+.footer-contact .footer-label { color:var(--brass-light); }
+.site-footer a:not(.button):hover { color:var(--gold-hover); }
+.whatsapp-float { border-color:rgb(200 169 106 / 45%); background:#151715; color:#f6f3ec; box-shadow:0 16px 36px -18px rgb(0 0 0 / 60%); }
+.whatsapp-float:hover { background:#262925; }
+.whatsapp-float svg { color:#25d366; }
+
+/* Layout: every section's container is up to 1600px wide (showroom.css later capped it at 1440px). */
+.wrap { width:min(100%,1600px); max-width:1600px; }
+
+/* Type: a larger scale. The tokens drive headings and body copy; the fixed pixel sizes below are the
+   showroom's smaller texts, each raised one or two steps. */
+:root { --small:.9375rem; --body:1.125rem; --lead:1.625rem; --head:clamp(2.75rem,4.8vw,4.75rem); --display:clamp(3.75rem,7.4vw,7rem); }
+@media (max-width:767px) { :root { --body:1.0625rem; --head:3rem; --display:3.75rem; } }
+@media (max-width:360px) { :root { --head:2.625rem; --display:3.25rem; } }
+.eyebrow { font-size:14px; }
+.car-standout strong, .attraction-facts dt, .trust-stats dt { font-size:13px; }
+.home-header .header-browse .desktop-nav a { font-size:16px; }
+.catalogue-grid .car-meta, .catalogue-grid .car-extra { font-size:16px; }
+.catalogue-grid .car-fit, .catalogue-grid .car-standout p, .car-card-footer .car-price p { font-size:17px; }
+.car-card-footer .card-actions > * { font-size:15px; }
+.spec-table th, .spec-table td { font-size:17px; }
+.buying-steps h3 { font-size:26px; }
+.buying-steps p, .testimonial p { font-size:18px; }
+.showroom-story-copy > p:not(.eyebrow) { font-size:clamp(17px,1.35vw,19px); }
+.stage-specs, .stage-price p, .stage-price .text-link, .stage-actions .button, .stage-actions .text-link, [data-lead-form] .button { font-size:16px; }
+.trust-notice, .instagram-note, .review-platform, .sell-feature-actions > p { font-size:15px; }
+.review-attribution time, .field-hint, .form-note, .field-error { font-size:14px; }
+.site-footer .footer-nav a { font-size:16px; }
+.footer-brand-block > p, .site-footer .footer-contact address, .footer-contact .footer-hours { font-size:17px; }
+.footer-bottom p, .footer-legal a { font-size:14px; }
+
+/* Motion. Scroll reveals live in resources/js/motion/reveal.js; these are the hover and entrance details. */
+@media (hover:hover) {
+  /* Photographs ease closer under the pointer. */
+  .car-card .car-photo img { transition:transform 900ms var(--ease); }
+  .car-card:hover .car-photo img { transform:scale(1.045); }
+  /* Gold actions catch a sweep of light; ink actions rise a touch. */
+  :is(section.dark,.showroom-story,.site-footer,.compare-tray) :is(a,button).button:not(.secondary):not(.ink), section.road-hero a.button.hero-primary { position:relative; overflow:hidden; isolation:isolate; }
+  :is(section.dark,.showroom-story,.site-footer,.compare-tray) :is(a,button).button:not(.secondary):not(.ink)::after, section.road-hero a.button.hero-primary::after { content:''; position:absolute; inset:0; z-index:-1; background:linear-gradient(105deg,transparent 30%,rgb(255 255 255 / 45%) 50%,transparent 70%); transform:translateX(-120%); transition:transform 800ms var(--ease); }
+  :is(section.dark,.showroom-story,.site-footer,.compare-tray) :is(a,button).button:not(.secondary):not(.ink):hover::after, section.road-hero a.button.hero-primary:hover::after { transform:translateX(120%); }
+  :is(a,button).button.ink, .vehicle-enquiry button.button { transition:background-color 200ms ease,transform 250ms var(--ease),box-shadow 250ms ease; }
+  :is(a,button).button.ink:hover, .vehicle-enquiry button.button:hover { transform:translateY(-2px); box-shadow:0 14px 28px -16px rgb(21 23 21 / 55%); }
+  .testimonial { transition:box-shadow 400ms ease,border-color 400ms ease; }
+  .testimonial:hover { border-color:rgb(200 169 106 / 45%); box-shadow:0 34px 70px -40px rgb(21 23 21 / 50%); }
+  .category-link { transition:background-color 250ms ease,color 250ms ease,border-color 250ms ease; }
+}
+/* The chat button slides in once the page has settled, then pulses a gold ring twice. */
+@keyframes sam-float-in { from { opacity:0; transform:translateY(24px); } }
+@keyframes sam-ring { 0% { box-shadow:0 0 0 0 rgb(200 169 106 / 55%); } 100% { box-shadow:0 0 0 18px rgb(200 169 106 / 0%); } }
+.whatsapp-float { animation:sam-float-in 700ms var(--ease) 900ms both, sam-ring 1.6s ease-out 2.2s 2; }
+
+@media (prefers-reduced-motion:reduce) { .car-card .car-photo { transition:none; } .whatsapp-float { animation:none; } }

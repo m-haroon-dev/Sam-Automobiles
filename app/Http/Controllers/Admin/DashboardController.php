@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Car;
 use App\Models\Category;
+use App\Models\Enquiry;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -20,6 +21,7 @@ class DashboardController extends Controller
             'recent' => Car::with('photos', 'category')->latest('updated_at')->take(6)->get()->map($card),
             'featured' => Car::published()->where('status', 'available')->where('is_featured', true)->with('photos', 'category')->orderBy('featured_order')->orderBy('name')->take(6)->get()->map($card),
             'insights' => ['added' => Car::where('created_at', '>=', $since)->count(), 'sold' => Car::where('status', 'sold')->where('sold_at', '>=', $since)->count()],
-            'categories' => Category::ordered()->withCount('cars')->get(['id', 'name']), 'uncategorised' => Car::whereNull('category_id')->count()]);
+            'categories' => Category::ordered()->withCount('cars')->get(['id', 'name']), 'uncategorised' => Car::whereNull('category_id')->count(),
+            'enquiries' => ['latest' => Enquiry::with('car')->latest()->latest('id')->take(5)->get()->map->summary(), 'new' => Enquiry::where('status', 'new')->count()]]);
     }
 }

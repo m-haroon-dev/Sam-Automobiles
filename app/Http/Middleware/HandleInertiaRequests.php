@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use App\Models\Car;
 use App\Models\Category;
+use App\Models\Enquiry;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
@@ -17,6 +18,6 @@ class HandleInertiaRequests extends Middleware
         return [...parent::share($request),
             'auth' => fn () => ['user' => $request->user()?->summary()],
             'flash' => fn () => ['success' => $request->session()->get('success')],
-            'adminNav' => fn () => $request->user()?->is_active ? ['cars' => Car::count(), 'categories' => Category::count(), ...($request->user()->is_admin ? ['users' => User::count()] : [])] : null];
+            'adminNav' => fn () => $request->user()?->is_active ? ['cars' => Car::count(), 'categories' => Category::count(), 'enquiries' => Enquiry::where('status', 'new')->count() ?: null, ...($request->user()->is_admin ? ['users' => User::count()] : [])] : null];
     }
 }

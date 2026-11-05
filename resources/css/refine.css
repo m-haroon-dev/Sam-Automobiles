@@ -33,6 +33,7 @@ button.utility:hover { border-color:var(--ink); }
 /* Secondary links read as links: underlined text, not pills. */
 .text-link:not(.source-link) { min-height:44px; padding:0; border:0; border-radius:0; background:none; box-shadow:none; -webkit-backdrop-filter:none; backdrop-filter:none; font-weight:500; text-decoration:underline; text-decoration-thickness:1px; text-underline-offset:7px; text-decoration-color:color-mix(in srgb,currentColor 35%,transparent); transition:text-decoration-color 200ms ease; }
 .text-link:not(.source-link):hover { opacity:1; text-decoration-color:currentColor; }
+.comparison-actions { display:flex; flex-wrap:wrap; align-items:center; gap:12px 24px; }
 
 /* Category chips and small round controls: outlined, flat. */
 .category-link { border:1px solid var(--hairline); background:none; background-color:transparent; box-shadow:none; -webkit-backdrop-filter:none; backdrop-filter:none; }

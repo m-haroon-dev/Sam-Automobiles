@@ -4,11 +4,12 @@ use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\CarController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\EnquiryController;
 use App\Http\Controllers\Admin\MailSettingsController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\CatalogueController;
-use App\Http\Controllers\EnquiryController;
+use App\Http\Controllers\EnquiryController as PublicEnquiryController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Middleware\EncryptHistory;
 
@@ -20,7 +21,7 @@ Route::get('/cars/{slug}', [CatalogueController::class, 'car'])->name('cars.show
 Route::get('/models/{slug}', [CatalogueController::class, 'model']);
 Route::get('/cars.json', [CatalogueController::class, 'json']);
 Route::get('/sitemap.xml', [CatalogueController::class, 'sitemap']);
-Route::post('/enquiries', [EnquiryController::class, 'store'])->middleware('throttle:5,1');
+Route::post('/enquiries', [PublicEnquiryController::class, 'store'])->middleware('throttle:5,1');
 Route::get('/robots.txt', fn () => response("User-agent: *\nAllow: /\nDisallow: /admin\nSitemap: ".rtrim(config('app.url'), '/')."/sitemap.xml\n")->header('Content-Type', 'text/plain'));
 Route::middleware('guest')->group(function () {
     Route::get('/admin/login', [AuthController::class, 'create'])->name('login');
@@ -46,6 +47,12 @@ Route::middleware(['auth', 'panel', EncryptHistory::class])->prefix('admin')->gr
     Route::post('/categories', [CategoryController::class, 'store']);
     Route::put('/categories/{category}', [CategoryController::class, 'update']);
     Route::delete('/categories/{category}', [CategoryController::class, 'destroy']);
+    Route::get('/enquiries', [EnquiryController::class, 'index'])->name('admin.enquiries');
+    Route::get('/enquiries/export', [EnquiryController::class, 'export']);
+    Route::put('/enquiries/{enquiry}', [EnquiryController::class, 'update']);
+    Route::patch('/enquiries/{enquiry}/status', [EnquiryController::class, 'status']);
+    Route::delete('/enquiries/{enquiry}', [EnquiryController::class, 'destroy']);
+    Route::get('/enquiries/{enquiry}/photos/{index}', [EnquiryController::class, 'photo'])->whereNumber('index');
     Route::get('/profile', [ProfileController::class, 'show'])->name('admin.profile');
     Route::put('/profile', [ProfileController::class, 'update']);
     Route::put('/profile/password', [ProfileController::class, 'password']);

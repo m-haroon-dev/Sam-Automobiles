@@ -2,6 +2,7 @@
 @import "tailwindcss/utilities.css" layer(utilities) source(none);
 @import "./showroom.css";
 @import "./refine.css";
+@import "./premium.css";
 @source "../js";
 @source "../views";
 @theme {

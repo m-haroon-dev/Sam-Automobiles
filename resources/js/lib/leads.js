@@ -1,6 +1,5 @@
-// No form data is stored. When the showroom has connected a mailbox (Admin › Email),
-// a valid enquiry and its photos are emailed to SAM before WhatsApp opens; otherwise
-// nothing is sent until the visitor chooses WhatsApp or the native share sheet.
+// A valid enquiry and its photos are sent to SAM (saved under Admin › Enquiries and, once a
+// mailbox is connected under Admin › Email, emailed) before WhatsApp opens.
 // Tracking receives event names, never form contents.
 export function normalizePakistanPhone(value='') {
   const raw=String(value).trim();
@@ -50,11 +49,11 @@ export function tradeMessage(fields,files=[]){return [`Hello SAM Automobiles, I�
 // Shrinks photos to 1920px JPEGs so six phone pictures stay well inside mail limits.
 // Files the browser cannot decode (often HEIC) are sent unchanged.
 async function shrinkPhoto(file,edge=1920){try{const bitmap=await createImageBitmap(file),scale=Math.min(1,edge/Math.max(bitmap.width,bitmap.height)),canvas=document.createElement('canvas');canvas.width=Math.round(bitmap.width*scale);canvas.height=Math.round(bitmap.height*scale);canvas.getContext('2d').drawImage(bitmap,0,0,canvas.width,canvas.height);bitmap.close?.();const blob=await new Promise(r=>canvas.toBlob(r,'image/jpeg',.85));return blob&&blob.size<file.size?new File([blob],file.name.replace(/\.[^.]+$/,'')+'.jpg',{type:'image/jpeg'}):file;}catch{return file;}}
-// Resolves true once the server accepts the enquiry for email. Never rejects, so WhatsApp still opens if mail is down.
-export async function emailEnquiry(kind,values,files=[],timeout=15000){
+// Resolves true once the server has saved the enquiry. Never rejects, so WhatsApp still opens if the server is down.
+export async function sendEnquiry(kind,values,files=[],timeout=15000){
  const body=new FormData(),controller=new AbortController(),timer=setTimeout(()=>controller.abort(),timeout);body.set('kind',kind);
  try{for(const [key,value] of Object.entries(values))if(key!=='photos')body.set(key,value??'');for(const file of await Promise.all(files.map(f=>shrinkPhoto(f))))body.append('photos[]',file);
   const response=await fetch('/enquiries',{method:'POST',body,credentials:'same-origin',signal:controller.signal,headers:{Accept:'application/json','X-CSRF-TOKEN':document.querySelector('meta[name=csrf-token]')?.content||''}});
-  return response.ok&&(await response.json()).emailed===true;}catch{return false;}finally{clearTimeout(timer);}
+  return response.ok&&(await response.json()).saved===true;}catch{return false;}finally{clearTimeout(timer);}
 }
 export const whatsappMessageURL=(site,message)=>'https://wa.me/'+site.phone.replace(/\D/g,'')+'?text='+encodeURIComponent(message);

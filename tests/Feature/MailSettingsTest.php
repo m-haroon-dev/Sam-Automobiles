@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Http\Controllers\EnquiryController;
 use App\Http\Middleware\HandleInertiaRequests;
 use App\Mail\LeadReceived;
+use App\Models\Enquiry;
 use App\Models\MailSetting;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -12,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Testing\AssertableInertia;
 use Tests\TestCase;
 
@@ -27,6 +29,7 @@ class MailSettingsTest extends TestCase
         if ($version !== null) {
             $this->withHeader('X-Inertia-Version', $version);
         }
+        Storage::fake(Enquiry::DISK);
         // No DNS in tests: these domains stand in for a Hostinger mailbox and a Google Workspace one.
         MailSetting::$mailExchangers = fn (string $domain) => ['samautomobiles.co' => ['mx1.hostinger.com.'], 'aptech.example' => ['ASPMX.L.GOOGLE.COM']][$domain] ?? [];
     }
@@ -117,17 +120,18 @@ class MailSettingsTest extends TestCase
         Mail::assertSent(LeadReceived::class, fn (LeadReceived $mail) => count($mail->attachments()) === 2 && $mail->details['Car'] === '2021 Toyota Corolla Altis' && $mail->heading === 'Sell my car from Sara');
     }
 
-    public function test_enquiries_are_not_emailed_when_off_invalid_or_from_bots(): void
+    public function test_enquiries_are_saved_but_not_emailed_when_mail_is_off(): void
     {
         Mail::fake();
         $viewing = ['kind' => 'viewing', 'name' => 'Ali Khan', 'phone' => '03001234567', 'day' => '2030-05-06', 'time' => '15:30'];
-        $this->postJson('/enquiries', $viewing)->assertJson(['emailed' => false]);
+        $this->postJson('/enquiries', $viewing)->assertJson(['saved' => true, 'emailed' => false]);
         $this->connect(['is_enabled' => false]);
-        $this->postJson('/enquiries', $viewing)->assertJson(['emailed' => false]);
+        $this->postJson('/enquiries', $viewing)->assertJson(['saved' => true, 'emailed' => false]);
         MailSetting::current()->update(['is_enabled' => true]);
-        $this->postJson('/enquiries', [...$viewing, 'website' => 'spam.example'])->assertJson(['emailed' => false]);
+        $this->postJson('/enquiries', [...$viewing, 'website' => 'spam.example'])->assertJson(['saved' => false, 'emailed' => false]);
         $this->postJson('/enquiries', [...$viewing, 'phone' => '12345'])->assertUnprocessable()->assertJsonValidationErrors('phone');
         Mail::assertNothingSent();
+        $this->assertSame(2, Enquiry::count());
     }
 
     public function test_pakistan_mobile_numbers_match_the_form(): void
