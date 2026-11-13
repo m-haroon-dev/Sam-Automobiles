@@ -7,10 +7,6 @@
 .eyebrow { display:inline-flex; align-items:center; gap:12px; font-weight:500; }
 .eyebrow::before { content:''; width:28px; height:1px; background:currentColor; opacity:.75; }
 
-/* Buttons: one shape everywhere. */
-:is(a,button).button { border-radius:6px; letter-spacing:.02em; }
-.category-link:hover { border-color:var(--paper-ink); }
-
 /* Section edges: hairlines. */
 .sell-feature { border-block:1px solid var(--hairline); }
 .site-header:not(.home-header) { border-bottom:1px solid var(--hairline); }
@@ -61,15 +57,8 @@
   /* Photographs ease closer under the pointer. */
   .car-card .car-photo img { transition:transform 900ms var(--ease); }
   .car-card:hover .car-photo img { transform:scale(1.045); }
-  /* Primary actions on dark grounds catch a sweep of light; ink actions rise a touch. */
-  :is(section.dark,.showroom-story,.site-footer,.compare-tray) :is(a,button).button:not(.secondary):not(.ink), section.road-hero a.button.hero-primary { position:relative; overflow:hidden; isolation:isolate; }
-  :is(section.dark,.showroom-story,.site-footer,.compare-tray) :is(a,button).button:not(.secondary):not(.ink)::after, section.road-hero a.button.hero-primary::after { content:''; position:absolute; inset:0; z-index:-1; background:linear-gradient(105deg,transparent 30%,rgb(255 255 255 / 45%) 50%,transparent 70%); transform:translateX(-120%); transition:transform 800ms var(--ease); }
-  :is(section.dark,.showroom-story,.site-footer,.compare-tray) :is(a,button).button:not(.secondary):not(.ink):hover::after, section.road-hero a.button.hero-primary:hover::after { transform:translateX(120%); }
-  :is(a,button).button.ink, .vehicle-enquiry button.button { transition:background-color 200ms ease,transform 250ms var(--ease),box-shadow 250ms ease; }
-  :is(a,button).button.ink:hover, .vehicle-enquiry button.button:hover { transform:translateY(-2px); box-shadow:0 14px 28px -16px rgb(21 23 21 / 55%); }
   .testimonial { transition:box-shadow 400ms ease,border-color 400ms ease; }
   .testimonial:hover { border-color:rgb(36 43 36 / 30%); box-shadow:0 34px 70px -40px rgb(21 23 21 / 50%); }
-  .category-link { transition:background-color 250ms ease,color 250ms ease,border-color 250ms ease; }
 }
 /* The chat button slides in once the page has settled, then pulses a ring twice. */
 @keyframes sam-float-in { from { opacity:0; transform:translateY(24px); } }
